@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 public class TestRunner implements ActionListener{
 
     public static void main(String[] args) {
-        TitleScreenFrame frame = new TitleScreenFrame();
-        frame.setTitle("ButtonTest");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(false);
+        TitleScreenFrame frame1 = new TitleScreenFrame();
+        frame1.setTitle("ButtonTest");
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setVisible(false);
 
         InstructionsPageFrame frame2 = new InstructionsPageFrame();
         frame2.setTitle("Instructions");
@@ -21,10 +21,14 @@ public class TestRunner implements ActionListener{
         frame3.setTitle("Scoring");
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame3.setVisible(true);
+
+        DiceRollFrame frame4 = new DiceRollFrame();
+        frame4.setTitle("Game");
+        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame4.setVisible(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 }
