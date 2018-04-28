@@ -9,10 +9,9 @@ public class TestRunner implements ActionListener{
     public static void main(String[] args) {
         TitleScreenFrame frame = new TitleScreenFrame();
         frame.setTitle("ButtonTest");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(false);
+        frame.setVisible(true);
 
-        InstructionsPageFrame frame2 = new InstructionsPageFrame();
+        /*InstructionsPageFrame frame2 = new InstructionsPageFrame();
         frame2.setTitle("Instructions");
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setVisible(false);
@@ -20,11 +19,15 @@ public class TestRunner implements ActionListener{
         ScoringPageFrame frame3 = new ScoringPageFrame();
         frame3.setTitle("Scoring");
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame3.setVisible(true);
+        frame3.setVisible(false);
+
+        DiceRollFrame frame4 = new DiceRollFrame();
+        frame4.setTitle("Game");
+        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame4.setVisible(false);*/
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 }
