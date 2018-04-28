@@ -129,4 +129,21 @@ public class UpperScorecard {
     public int getUpperTotal() {
         return upperTotal;
     }
+
+    public int getUpperSum() {
+        return upperSum;
+    }
+
+    public void setUpperSum(int upperSum) {
+        this.upperSum = upperSum;
+    }
+
+    public boolean isHasBonus() {
+        return hasBonus;
+    }
+
+    public void setHasBonus(boolean hasBonus) {
+        this.hasBonus = hasBonus;
+    }
+
 }

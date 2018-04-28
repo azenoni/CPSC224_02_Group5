@@ -48,7 +48,12 @@ public class TitleScreenFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == playButton) {
             System.out.println("Play button clicked");
-            DiceRollFrame diceRollFrame = new DiceRollFrame();
+            DiceRollFrame diceRollFrame = null;
+            try {
+                diceRollFrame = new DiceRollFrame();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             diceRollFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == instructionButton) {

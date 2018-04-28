@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TestRunner implements ActionListener{
+public class TestRunner {//implements ActionListener{
 
     public static void main(String[] args) {
         TitleScreenFrame frame = new TitleScreenFrame();
@@ -26,8 +26,8 @@ public class TestRunner implements ActionListener{
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame4.setVisible(false);*/
     }
-
+/*
     @Override
     public void actionPerformed(ActionEvent e) {
-    }
+    }*/
 }

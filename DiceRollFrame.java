@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class DiceRollFrame extends JFrame implements ActionListener {
+    private Random random = new Random();
     private JPanel buttonPanel;
     private static final int DEFAULT_WIDTH = 2400;
     private static final int DEFAULT_HEIGHT = 1200;
+    private static ArrayList<Image> diceImages = new ArrayList<>();
 
     private JButton keepButton1 = new JButton("KEEP");
     private JButton keepButton2 = new JButton("KEEP");
@@ -25,11 +29,46 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     private JButton keepButton11 = new JButton("KEEP");
     private JButton keepButton12 = new JButton("KEEP");
 
+    private JButton diceButton1 = new JButton();
+    private JButton diceButton2 = new JButton();
+    private JButton diceButton3 = new JButton();
+    private JButton diceButton4 = new JButton();
+    private JButton diceButton5 = new JButton();
+    private JButton diceButton6 = new JButton();
+    private JButton diceButton7 = new JButton();
+    private JButton diceButton8 = new JButton();
+    private JButton diceButton9 = new JButton();
+    private JButton diceButton10 = new JButton();
+    private JButton diceButton11 = new JButton();
+    private JButton diceButton12 = new JButton();
+
     private JButton rollButton = new JButton("ROLL");
     private JButton scoreButton = new JButton("SCORE");
     private JButton mainMenuButton = new JButton("Main Menu");
 
-    public DiceRollFrame() {
+    private Boolean keepBool1 = false;
+    private Boolean keepBool2 = false;
+    private Boolean keepBool3 = false;
+    private Boolean keepBool4 = false;
+    private Boolean keepBool5 = false;
+    private Boolean keepBool6 = false;
+    private Boolean keepBool7 = false;
+    private Boolean keepBool8 = false;
+    private Boolean keepBool9 = false;
+    private Boolean keepBool10 = false;
+    private Boolean keepBool11 = false;
+    private Boolean keepBool12 = false;
+
+    public DiceRollFrame() throws IOException {
+        initializeButtons();
+        initializeDiceImages();
+        initializeDiceButtons();
+
+        buttonPanel.setLocation(10, 100);
+        add(buttonPanel);
+    }
+
+    private void initializeButtons(){
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ImagePanel();
@@ -138,29 +177,230 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         buttonPanel.add(mainMenuButton);
         buttonPanel.add(rollButton);
         buttonPanel.add(scoreButton);
+    }
 
-        buttonPanel.setLocation(10, 100);
-        add(buttonPanel);
+    private void initializeDiceImages() throws  IOException{
+        Image mario = ImageIO.read(new File("img/mario.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image luigi = ImageIO.read(new File("img/luigi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image toad = ImageIO.read(new File("img/toad.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image princessPeach = ImageIO.read(new File("img/princessPeach.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image daisy = ImageIO.read(new File("img/daisy.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image rosalina = ImageIO.read(new File("img/rosalina.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image yoshi = ImageIO.read(new File("img/yoshi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image donkeyKong = ImageIO.read(new File("img/donkeyKong.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image diddyKong = ImageIO.read(new File("img/diddyKong.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image wario = ImageIO.read(new File("img/wario.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image waluigi = ImageIO.read(new File("img/waluigi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image bowser = ImageIO.read(new File("img/bowser.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+
+        diceImages.add(mario);
+        diceImages.add(luigi);
+        diceImages.add(toad);
+        diceImages.add(princessPeach);
+        diceImages.add(daisy);
+        diceImages.add(rosalina);
+        diceImages.add(yoshi);
+        diceImages.add(donkeyKong);
+        diceImages.add(diddyKong);
+        diceImages.add(wario);
+        diceImages.add(waluigi);
+        diceImages.add(bowser);
+    }
+
+    private void initializeDiceButtons(){
+        diceButton1.setBackground(Color.WHITE);
+        diceButton2.setBackground(Color.WHITE);
+        diceButton3.setBackground(Color.WHITE);
+        diceButton4.setBackground(Color.WHITE);
+        diceButton5.setBackground(Color.WHITE);
+        diceButton6.setBackground(Color.WHITE);
+        diceButton7.setBackground(Color.WHITE);
+        diceButton8.setBackground(Color.WHITE);
+        diceButton9.setBackground(Color.WHITE);
+        diceButton10.setBackground(Color.WHITE);
+        diceButton11.setBackground(Color.WHITE);
+        diceButton12.setBackground(Color.WHITE);
+
+        diceButton1.setBounds(200, 25, 200, 250);
+        diceButton2.setBounds(600, 25, 200, 250);
+        diceButton3.setBounds(950, 25, 200, 250);
+        diceButton4.setBounds(1300, 25, 200, 250);
+        diceButton5.setBounds(1650, 25, 200, 250);
+        diceButton6.setBounds(2000, 25, 200, 250);
+        diceButton7.setBounds(200, 475, 200, 250);
+        diceButton8.setBounds(600, 475, 200, 250);
+        diceButton9.setBounds(950, 475, 200, 250);
+        diceButton10.setBounds(1300, 475, 200, 250);
+        diceButton11.setBounds(1650, 475, 200, 250);
+        diceButton12.setBounds(2000, 475, 200, 250);
+
+        diceButton1.addActionListener(this);
+        diceButton2.addActionListener(this);
+        diceButton3.addActionListener(this);
+        diceButton4.addActionListener(this);
+        diceButton5.addActionListener(this);
+        diceButton6.addActionListener(this);
+        diceButton7.addActionListener(this);
+        diceButton8.addActionListener(this);
+        diceButton9.addActionListener(this);
+        diceButton10.addActionListener(this);
+        diceButton11.addActionListener(this);
+        diceButton12.addActionListener(this);
+
+        setDiceFace(diceButton1);
+        setDiceFace(diceButton2);
+        setDiceFace(diceButton3);
+        setDiceFace(diceButton4);
+        setDiceFace(diceButton5);
+        setDiceFace(diceButton6);
+        setDiceFace(diceButton7);
+        setDiceFace(diceButton8);
+        setDiceFace(diceButton9);
+        setDiceFace(diceButton10);
+        setDiceFace(diceButton11);
+        setDiceFace(diceButton12);
+
+        buttonPanel.add(diceButton1);
+        buttonPanel.add(diceButton2);
+        buttonPanel.add(diceButton3);
+        buttonPanel.add(diceButton4);
+        buttonPanel.add(diceButton5);
+        buttonPanel.add(diceButton6);
+        buttonPanel.add(diceButton7);
+        buttonPanel.add(diceButton8);
+        buttonPanel.add(diceButton9);
+        buttonPanel.add(diceButton10);
+        buttonPanel.add(diceButton11);
+        buttonPanel.add(diceButton12);
+    }
+
+    private void setDiceFace(JButton button){
+        Image face = diceImages.get(random.nextInt(diceImages.size()));
+        button.setIcon(new ImageIcon(face));
+    }
+
+    private void rollDice(){
+        if(keepBool1 == false)
+            setDiceFace(diceButton1);
+        if(keepBool2 == false)
+            setDiceFace(diceButton2);
+        if(keepBool3 == false)
+            setDiceFace(diceButton3);
+        if(keepBool4 == false)
+            setDiceFace(diceButton4);
+        if(keepBool5 == false)
+            setDiceFace(diceButton6);
+        if(keepBool6 == false)
+            setDiceFace(diceButton6);
+        if(keepBool7 == false)
+            setDiceFace(diceButton7);
+        if(keepBool8 == false)
+            setDiceFace(diceButton8);
+        if(keepBool9 == false)
+            setDiceFace(diceButton9);
+        if(keepBool10 == false)
+            setDiceFace(diceButton10);
+        if(keepBool11 == false)
+            setDiceFace(diceButton11);
+        if(keepBool12 == false)
+            setDiceFace(diceButton12);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-        /*switch(button){
-            case keepButton1:
-                System.out.println("Keep Dice 1");
-                break;
-            case keepButton2:
-                System.out.println("Keep Dice 2");
-                break;
-            default:
-                break;
-        }*/
         if(button == mainMenuButton) {
             System.out.println("Main menu button clicked");
             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
             titleScreenFrame.setVisible(true);
             this.dispose();
+        } else if (button == keepButton1){
+            keepBool1 = !keepBool1;
+            if(keepBool1 == true){
+                diceButton1.setBackground(Color.DARK_GRAY);
+            } else {
+                diceButton1.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton2){
+            keepBool2 = !keepBool2;
+            if(keepBool2 == true){
+                diceButton2.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton2.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton3){
+            keepBool3 = !keepBool3;
+            if(keepBool3 == true){
+                diceButton3.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton3.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton4){
+            keepBool4 = !keepBool4;
+            if(keepBool4 == true){
+                diceButton4.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton4.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton5){
+            keepBool5 = !keepBool5;
+            if(keepBool5 == true){
+                diceButton5.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton5.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton6){
+            keepBool6 = !keepBool6;
+            if(keepBool6 == true){
+                diceButton6.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton6.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton7){
+            keepBool7 = !keepBool7;
+            if(keepBool7 == true){
+                diceButton7.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton7.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton8){
+            keepBool8 = !keepBool8;
+            if(keepBool8 == true){
+                diceButton8.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton8.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton9){
+            keepBool9 = !keepBool9;
+            if(keepBool9 == true){
+                diceButton9.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton9.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton10){
+            keepBool10 = !keepBool10;
+            if(keepBool10 == true){
+                diceButton10.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton10.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton11){
+            keepBool11 = !keepBool11;
+            if(keepBool11 == true){
+                diceButton11.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton11.setBackground(Color.WHITE);
+            }
+        } else if (button == keepButton12){
+            keepBool12 = !keepBool12;
+            if(keepBool12 == true){
+                diceButton12.setBackground(Color.DARK_GRAY);
+            } else{
+                diceButton12.setBackground(Color.WHITE);
+            }
+        } else if(button == rollButton){
+            rollDice();
         }
     }
 

@@ -72,5 +72,11 @@ public class Player {
         scoreCard.displayUsedValues();
     }
 
+    public ScoreCard getScoreCard() {
+        return scoreCard;
+    }
 
+    public void setScoreCard(ScoreCard scoreCard) {
+        this.scoreCard = scoreCard;
+    }
 }
