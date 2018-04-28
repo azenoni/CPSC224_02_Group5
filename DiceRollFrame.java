@@ -289,7 +289,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         if(keepBool4 == false)
             setDiceFace(diceButton4);
         if(keepBool5 == false)
-            setDiceFace(diceButton6);
+            setDiceFace(diceButton5);
         if(keepBool6 == false)
             setDiceFace(diceButton6);
         if(keepBool7 == false)
