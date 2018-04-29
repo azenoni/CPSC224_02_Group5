@@ -13,6 +13,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private ArrayList<Player> arrayList;
     private int activePlayer;
 
+
+
     private final Font buttonFont = new Font("Arial", Font.BOLD, 30);
     private final Font titleFont = new Font("Arial", Font.BOLD, 80);
     private final Font instructionFont = new Font("Arial", Font.PLAIN, 18);
@@ -22,8 +24,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private final int buttonDiff = 80;
 
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 1600;
-    private static final int DEFAULT_HEIGHT = 800;
+    private static final int DEFAULT_WIDTH = 2400;
+    private static final int DEFAULT_HEIGHT = 1200;
 
     private JButton saveButton = new JButton("SAVE");
     private JButton goodGuys = new JButton("Good Guys");
@@ -702,7 +704,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(image.getScaledInstance(1600, 800, Image. SCALE_SMOOTH), 0, 0, this);
+            g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image. SCALE_SMOOTH), 0, 0, this);
             g.setColor(Color.RED);
             drawGridUpper(g);
             drawGridLower(g);

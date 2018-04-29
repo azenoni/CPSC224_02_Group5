@@ -3,11 +3,12 @@ import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TestRunner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Player firstPlayer = new Player(10,12);
         Player secondPlayer = new Player(10,12);
         Player thirdPlayer = new Player(10,12);
@@ -38,9 +39,9 @@ public class TestRunner {
         frame4.setVisible(false);
 
         ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,0, null);
-        frame4.setTitle("Scorecard");
-        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame4.setVisible(true);
+        frame5.setTitle("Scorecard");
+        frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame5.setVisible(false);
         
     }
 }
