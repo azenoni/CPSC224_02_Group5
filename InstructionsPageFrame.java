@@ -66,7 +66,6 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         mainMenuButton.setForeground(Color.BLACK);
 
         title.setFont(titleFont);
-
         howToWinText.setFont(instructionFont);
         howToPlayText.setFont(instructionFont);
 

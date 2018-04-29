@@ -85,8 +85,8 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
             this.dispose();
         } else if (e.getSource() == nextButton) {
             System.out.println("Next button clicked");
-            ScoringFrame scoringFrame = new ScoringFrame();
-            scoringFrame.setVisible(true);
+            ScoringInstructionFrame scoringInstructionFrame = new ScoringInstructionFrame();
+            scoringInstructionFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == mainMenuButton) {
             System.out.println("Main menu button clicked");

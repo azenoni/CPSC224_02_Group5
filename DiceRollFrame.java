@@ -46,24 +46,24 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     private JButton scoreButton = new JButton("SCORE");
     private JButton mainMenuButton = new JButton("Main Menu");
 
-    private Boolean keepBool1 = false;
-    private Boolean keepBool2 = false;
-    private Boolean keepBool3 = false;
-    private Boolean keepBool4 = false;
-    private Boolean keepBool5 = false;
-    private Boolean keepBool6 = false;
-    private Boolean keepBool7 = false;
-    private Boolean keepBool8 = false;
-    private Boolean keepBool9 = false;
-    private Boolean keepBool10 = false;
-    private Boolean keepBool11 = false;
-    private Boolean keepBool12 = false;
+    private boolean keepBool1, keepBool2, keepBool3, keepBool4, keepBool5, keepBool6, keepBool7, keepBool8, keepBool9, keepBool10, keepBool11, keepBool12 = false;
 
     public DiceRollFrame() throws IOException {
         initializeButtons();
         initializeDiceImages();
         initializeDiceButtons();
 
+        scoreButton.setVisible(false);
+        buttonPanel.setLocation(10, 100);
+        add(buttonPanel);
+    }
+
+    public DiceRollFrame(int players) throws IOException {
+        initializeButtons();
+        initializeDiceImages();
+        initializeDiceButtons();
+
+        scoreButton.setVisible(false);
         buttonPanel.setLocation(10, 100);
         add(buttonPanel);
     }
@@ -304,7 +304,6 @@ public class DiceRollFrame extends JFrame implements ActionListener {
             setDiceFace(diceButton11);
         if(keepBool12 == false)
             setDiceFace(diceButton12);
-
     }
 
     @Override
@@ -400,6 +399,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
                 diceButton12.setBackground(Color.WHITE);
             }
         } else if(button == rollButton){
+            System.out.println("Roll button clicked");
             rollDice();
         }
     }

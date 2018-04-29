@@ -16,7 +16,7 @@ public class TestRunner {//implements ActionListener{
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setVisible(false);
 
-        ScoringPageFrame frame3 = new ScoringPageFrame();
+        ScoringInstructionFrame frame3 = new ScoringInstructionFrame();
         frame3.setTitle("Scoring");
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame3.setVisible(false);
