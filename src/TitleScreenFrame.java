@@ -48,8 +48,8 @@ public class TitleScreenFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == playButton) {
             System.out.println("Play button clicked");
-            MultiPlayerFrame multiPlayerFrame = new MultiPlayerFrame();
-            multiPlayerFrame.setVisible(true);
+            DiceRollFrame diceRollFrame = new DiceRollFrame();
+            diceRollFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == instructionButton) {
             System.out.println("Instruction button clicked");
@@ -67,7 +67,7 @@ public class TitleScreenFrame extends JFrame implements ActionListener{
         public ImagePanel(BorderLayout bl) {
             super(bl);
             try {
-                image = ImageIO.read(new File("img/titleScreen.jpg"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\titleScreen.jpg"));
             } catch (IOException ex) {
                 System.out.println("Image not found TITLE");
                 System.exit(1);
@@ -77,7 +77,7 @@ public class TitleScreenFrame extends JFrame implements ActionListener{
         public ImagePanel() {
             super();
             try {
-                image = ImageIO.read(new File("img/titleScreen.jpg"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\titleScreen.jpg"));
             } catch (IOException ex) {
                 System.out.println("Image not found TITLE 2");
                 System.exit(1);

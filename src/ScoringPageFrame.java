@@ -93,7 +93,7 @@ public class ScoringPageFrame extends JFrame implements ActionListener{
         public ImagePanel(BorderLayout bl) {
             super(bl);
             try {
-                image = ImageIO.read(new File("img/desertScoring.jpg"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\desertScoring.jpg"));
             } catch (IOException ex) {
                 System.out.println("Image not found SCORING");
                 System.exit(1);
@@ -103,7 +103,7 @@ public class ScoringPageFrame extends JFrame implements ActionListener{
         public ImagePanel() {
             super();
             try {
-                image = ImageIO.read(new File("img/desertScoring.jpg"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\desertScoring.jpg"));
             } catch (IOException ex) {
                 System.out.println("Image not found SCORING 2");
                 System.exit(1);

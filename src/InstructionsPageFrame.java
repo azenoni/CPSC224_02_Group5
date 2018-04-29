@@ -18,7 +18,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
     private JLabel howToWinText = new JLabel("<html><strong><u>How to Win:</u></strong> " +
             "<br><br> The highest score after all twelve rounds, wins the game </html>");
     private JLabel howToPlayText = new JLabel("<html><strong><u>How To Play:</u></strong> <br>" +
-            "<br>To begin playing, each player will roll twelve, <strong>twelve-sided</strong> dice. The player who rolled the most ‘Mario’ dice, will begin the game. Play will " +
+            "<br>To begin playing, each player will roll all 10 dice. The player who rolled the most ‘Mario’ dice, will begin the game. Play will " +
             "continue in a clockwise. For each hand, you get three roles: <br>" +
             "<strong>Roll 1:</strong><blockquote>On roll one, the player picks up all the dice and <br>" +
             "rolls them. After this roll, you can keep none of the dice " +
@@ -66,6 +66,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         mainMenuButton.setForeground(Color.BLACK);
 
         title.setFont(titleFont);
+
         howToWinText.setFont(instructionFont);
         howToPlayText.setFont(instructionFont);
 
@@ -91,8 +92,6 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
                 diceInstructionFrame = new DiceInstructionFrame();
             } catch (IOException e1) {
                 e1.printStackTrace();
-            } catch (FontFormatException e1) {
-                e1.printStackTrace();
             }
             diceInstructionFrame.setVisible(true);
             this.dispose();
@@ -111,7 +110,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         public ImagePanel(BorderLayout bl) {
             super(bl);
             try {
-                image = ImageIO.read(new File("img/flowerInstructions.png"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
             } catch (IOException ex) {
                 System.out.println("Image not found INSTRUCTIONS");
                 System.exit(1);
@@ -121,7 +120,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         public ImagePanel() {
             super();
             try {
-                image = ImageIO.read(new File("img/flowerInstructions.png"));
+                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
             } catch (IOException ex) {
                 System.out.println("Image not found INSTRUCTIONS 2");
                 System.exit(1);

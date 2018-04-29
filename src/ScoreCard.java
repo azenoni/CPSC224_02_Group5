@@ -251,25 +251,14 @@ public class ScoreCard {
 
     }
 
-    public UpperScorecard getUpperScorecard() {
-        return upperScorecard;
-    }
 
-    public void setUpperScorecard(UpperScorecard upperScorecard) {
-        this.upperScorecard = upperScorecard;
-    }
 
-    public LowerScorecard getLowerScorecard() {
-        return lowerScorecard;
-    }
-
-    public void setLowerScorecard(LowerScorecard lowerScorecard) {
-        this.lowerScorecard = lowerScorecard;
-    }
 
     public void determineFinalScore() {
         upperScorecard.calculateScoreTotal();
         lowerScorecard.calculateTotalValue();
         scoreCardTotal = upperScorecard.getUpperTotal() + lowerScorecard.getLowerTotal();
     }
+
+
 }

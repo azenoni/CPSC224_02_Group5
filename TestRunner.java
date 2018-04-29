@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class TestRunner implements ActionListener{
+public class TestRunner {
 
     public static void main(String[] args) {
         Player firstPlayer = new Player(10,12);
@@ -20,27 +20,27 @@ public class TestRunner implements ActionListener{
 
         TitleScreenFrame frame = new TitleScreenFrame();
         frame.setTitle("ButtonTest");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(false);
+        frame.setVisible(true);
 
         InstructionsPageFrame frame2 = new InstructionsPageFrame();
         frame2.setTitle("Instructions");
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setVisible(false);
 
-        ScoringPageFrame frame3 = new ScoringPageFrame();
+        ScoringInstructionFrame frame3 = new ScoringInstructionFrame();
         frame3.setTitle("Scoring");
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame3.setVisible(false);
+        
+        DiceRollFrame frame4 = new DiceRollFrame();
+        frame4.setTitle("Game");
+        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame4.setVisible(false);
 
-        ScoreCardFrame frame4 = new ScoreCardFrame(arrayList,0, null);
+        ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,0, null);
         frame4.setTitle("Scorecard");
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame4.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+        
     }
 }
