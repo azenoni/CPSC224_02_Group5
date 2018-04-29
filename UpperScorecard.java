@@ -145,5 +145,4 @@ public class UpperScorecard {
     public void setHasBonus(boolean hasBonus) {
         this.hasBonus = hasBonus;
     }
-
 }
