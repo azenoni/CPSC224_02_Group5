@@ -438,6 +438,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
             runTurn();
         } else if(button == scoreButton){
             System.out.println("Score button clicked");
+            turnCount = 0;
             ScoreCardFrame scoreCardFrame = new ScoreCardFrame(players, activePlayer, diceHand);
             scoreCardFrame.setVisible(true);
             this.dispose();

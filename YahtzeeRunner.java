@@ -25,7 +25,7 @@ public class YahtzeeRunner {
         System.out.println("Have fun!");
         Scanner reader = new Scanner(System.in);
         int numSides = 12;
-        int numDie = 10;
+        int numDie = 12;
         int numRolls = 3;
 
         boolean playAgain = true;

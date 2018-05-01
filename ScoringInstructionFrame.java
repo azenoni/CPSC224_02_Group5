@@ -24,9 +24,9 @@ public class ScoringInstructionFrame extends JFrame implements ActionListener{
             "<strong>5 of a Kind:</strong><ul><li>5 characters from the same category are rolled</li><li><u>Score:</u> points of the character category multiplied by 5</li></ul>" +
             "<strong>7 of a Kind:</strong><ul><li>7 characters from the same category are rolled</li><li><u>Score:</u> points of the character category multiplied by 7</li></ul>" +
             "<strong>Good Guys Rule:</strong><ul><li>6 characters from the \"Good Guy\" category are rolled</li><li><u>Score:</u> 35 points</li></ul>" +
-            "<strong>Bad Guys Suck:</strong><ul><li>6 characters from the \"Bad Guys\" category are rolled</li><li><u>Score:</u> -20 points (give to another player)</li></ul>" +
+            "<strong>Bad Guys Suck:</strong><ul><li>6 characters from the \"Bad Guys\" category are rolled</li><li><u>Score:</u> -20 points (from all other players)</li></ul>" +
             "<strong>Super Mario:</strong><ul><li>8 of the dice are showing 'Mario'</li><li><u>Score:</u> 100 points</li></ul>" +
-            "<strong>Evil Bowser:</strong><ul><li>8 of the dice are showing 'Bowser'</li><li><u>Score:</u> -50 points (give to another player)</li></ul>" +
+            "<strong>Evil Bowser:</strong><ul><li>8 of the dice are showing 'Bowser'</li><li><u>Score:</u> -50 points (from all other players)</li></ul>" +
             "<strong>Animal Kingdom:</strong><ul><li>10 of the dice are showing Animal category characters</li><li><u>Score:</u> 50 points</li></ul>" +
             "<strong>Mario Pary:</strong><ul><li>Equivalent to the chance of normal Yahtzee</li><li><u>Score:</u> sum up point value of all dice shown</li></ul></html>");
 
