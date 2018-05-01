@@ -335,12 +335,13 @@ public class ScoreCard {
     }
 
     public void determineFinalScore() {
-        upperScorecard.calculateScoreTotal();
-        lowerScorecard.calculateTotalValue();
+//        upperScorecard.calculateScoreTotal();
+//        lowerScorecard.calculateTotalValue();
         scoreCardTotal = upperScorecard.getUpperTotal() + lowerScorecard.getLowerTotal();
     }
 
     public int getScoreCardTotal() {
+        scoreCardTotal = upperScorecard.getUpperTotal() + lowerScorecard.getLowerTotal();
         return scoreCardTotal;
     }
 

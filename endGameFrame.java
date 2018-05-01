@@ -102,7 +102,7 @@ public class EndGameFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
          if(e.getSource() == playAgainButton) {
             System.out.println("Play Again button clicked");
-             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
+             MultiPlayerFrame titleScreenFrame = new MultiPlayerFrame();
              titleScreenFrame.setVisible(true);
              this.dispose();
         }else if(e.getSource() == exitButton) {

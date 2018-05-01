@@ -17,7 +17,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     private static int turnCount = 0;
     private int activePlayer;
     private static ArrayList<Image> diceImages = new ArrayList<>();
-    private static ArrayList<Player> players = new ArrayList<>();
+    private static ArrayList<Player> players;
     private ArrayList<Dice> diceHand = new ArrayList<>();
 
     private JButton keepButton1 = new JButton("KEEP");
@@ -56,13 +56,14 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         initializeButtons();
         initializeDiceImages();
         initializeDiceButtons();
-
+        players = new ArrayList<>();
         scoreButton.setVisible(false);
         buttonPanel.setLocation(10, 100);
         add(buttonPanel);
     }
 
     public DiceRollFrame(int players) throws IOException {
+        this.players = new ArrayList<>();
         initializeButtons();
         initializeDiceImages();
         initializeDiceButtons();
@@ -81,7 +82,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         initializeButtons();
         initializeDiceImages();
         initializeDiceButtons();
-
+        this.players = players;
         activePlayer = currentPlayer;
 
         scoreButton.setVisible(false);

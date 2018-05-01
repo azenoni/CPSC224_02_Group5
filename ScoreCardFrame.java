@@ -28,7 +28,6 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
 
     private JButton saveButton = new JButton("SAVE");
-    private JButton finishButton = new JButton("FINISH");
     private JButton goodGuys = new JButton("Good Guys");
     private JButton princesses = new JButton("Princesses");
     private JButton animals = new JButton("Animals");
@@ -40,6 +39,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JButton superMario = new JButton("Super Mario");
     private JButton evilBowser = new JButton("Evil Bowser");
     private JButton animalKingdom = new JButton("<html>Animal <br>Kingdom</html>");
+    private JButton finishButton = new JButton("FINISH");
     private JButton marioParty = new JButton("Mario Party");
 
 
@@ -122,12 +122,10 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         buttonPanel.setLayout(null);
 
         saveButton.setBackground(Color.WHITE);
-        finishButton.setBackground(Color.WHITE);
 
         title.setBounds(38,0,1200,150);
         saveButton.setBounds(30,975, 200,100);
-        finishButton.setBounds(250, 975, buttonWidth, buttonHeight);
-
+        finishButton.setBounds(250, 975, 200, 100);
 
         saveButton.setOpaque(true);
         saveButton.setBorderPainted(true);
@@ -145,6 +143,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
         title.setForeground(Color.WHITE);
         title.setFont(titleFont);
+        finishButton.setBackground(Color.WHITE);
 
         buttonPanel.add(title);
         buttonPanel.add(saveButton);
@@ -222,6 +221,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
                 EndGameFrame endGameFrame = new EndGameFrame(arrayList);
                 endGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 endGameFrame.setVisible(true);
+                this.dispose();
             } else {
                 if(canSave) {
                     DiceRollFrame diceRollFrame = null;
@@ -376,7 +376,10 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             System.out.println("marioparty clicked");
         } else if(e.getSource() == finishButton) {
             System.out.println("finish button clicked");
-            EndGameFrame();
+            EndGameFrame endGameFrame = new EndGameFrame(arrayList);
+            endGameFrame.setVisible(true);
+            endGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
         }
     }
 
