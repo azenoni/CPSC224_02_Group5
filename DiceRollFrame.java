@@ -14,7 +14,11 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     private JPanel buttonPanel;
     private static final int DEFAULT_WIDTH = 2400;
     private static final int DEFAULT_HEIGHT = 1200;
+    private static int turnCount = 0;
+    private int activePlayer;
     private static ArrayList<Image> diceImages = new ArrayList<>();
+    private static ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Dice> diceHand = new ArrayList<>();
 
     private JButton keepButton1 = new JButton("KEEP");
     private JButton keepButton2 = new JButton("KEEP");
@@ -62,6 +66,23 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         initializeButtons();
         initializeDiceImages();
         initializeDiceButtons();
+
+        for(int i = 0; i < players; i++)
+        {
+            this.players.add(new Player(12, 12));
+        }
+
+        scoreButton.setVisible(false);
+        buttonPanel.setLocation(10, 100);
+        add(buttonPanel);
+    }
+
+    public DiceRollFrame(ArrayList<Player> players, int currentPlayer) throws IOException {
+        initializeButtons();
+        initializeDiceImages();
+        initializeDiceButtons();
+
+        activePlayer = currentPlayer;
 
         scoreButton.setVisible(false);
         buttonPanel.setLocation(10, 100);
@@ -275,8 +296,12 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     }
 
     private void setDiceFace(JButton button){
-        Image face = diceImages.get(random.nextInt(diceImages.size()));
+        Dice dice = new Dice(12);
+        dice.rollDice();
+        Image face = diceImages.get(dice.getCurValue() - 1);
         button.setIcon(new ImageIcon(face));
+
+        diceHand.add(dice);
     }
 
     private void rollDice(){
@@ -304,6 +329,14 @@ public class DiceRollFrame extends JFrame implements ActionListener {
             setDiceFace(diceButton11);
         if(keepBool12 == false)
             setDiceFace(diceButton12);
+    }
+
+    public void runTurn(){
+        if((turnCount == 2) || (keepBool1 && keepBool2 && keepBool3 && keepBool4 && keepBool5 && keepBool6
+                && keepBool7 && keepBool8 && keepBool9 && keepBool10 && keepBool11 && keepBool12)){
+            rollButton.setVisible(false);
+            scoreButton.setVisible(true);
+        }
     }
 
     @Override
@@ -400,7 +433,14 @@ public class DiceRollFrame extends JFrame implements ActionListener {
             }
         } else if(button == rollButton){
             System.out.println("Roll button clicked");
+            turnCount++;
             rollDice();
+            runTurn();
+        } else if(button == scoreButton){
+            System.out.println("Score button clicked");
+            ScoreCardFrame scoreCardFrame = new ScoreCardFrame(players, activePlayer, diceHand);
+            scoreCardFrame.setVisible(true);
+            this.dispose();
         }
     }
 
