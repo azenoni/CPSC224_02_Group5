@@ -16,7 +16,7 @@ import java.util.Collections;
 public class ScoreCard {
     private UpperScorecard upperScorecard;
     private LowerScorecard lowerScorecard;
-    private int scoreCardTotal;
+    public int scoreCardTotal;
     private ArrayList<Dice> diceHand;
 
     /**
