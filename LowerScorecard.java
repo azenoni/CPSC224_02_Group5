@@ -69,6 +69,33 @@ public class LowerScorecard {
         System.out.println("Lower total is: " + lowerTotal);
     }
 
+    public void resetUnusedValues() {
+        if(!fiveOfAKind.isUsed()) {
+            fiveOfAKind.setCurValue(0);
+        }
+        if(!sevenOfAKind.isUsed()) {
+            sevenOfAKind.setCurValue(0);
+        }
+        if(!goodGuysRule.isUsed()) {
+            goodGuysRule.setCurValue(0);
+        }
+        if(!badGuysSuck.isUsed()) {
+            badGuysSuck.setCurValue(0);
+        }
+        if(!superMario.isUsed()) {
+            superMario.setCurValue(0);
+        }
+        if(!evilBowser.isUsed()) {
+            evilBowser.setCurValue(0);
+        }
+        if(!animalKingdom.isUsed()) {
+            animalKingdom.setCurValue(0);
+        }
+        if(!marioParty.isUsed()) {
+            marioParty.setCurValue(0);
+        }
+    }
+
     /**
      * Determines if there are fields remaining
      * @return If there are fields remaining

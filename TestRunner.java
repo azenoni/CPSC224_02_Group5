@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestRunner {
 
@@ -38,7 +39,18 @@ public class TestRunner {
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame4.setVisible(false);
 
-        ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,1, null);
+
+        ArrayList<Dice> diceHand = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            Dice dice = new Dice(12);
+            dice.rollDice();
+            diceHand.add(dice);
+        }
+
+        for(Dice tmp : diceHand) {
+            System.out.println(tmp.getCurValue());
+        }
+        ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,0, diceHand);
         frame5.setTitle("Scorecard");
         frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame5.setVisible(true);

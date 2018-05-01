@@ -88,6 +88,12 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         this.arrayList = arrayList;
         this.activePlayer = activePlayer;
         this.diceHand = diceHand;
+
+        arrayList.get(activePlayer).getScoreCard().setDiceHand(this.diceHand);
+        arrayList.get(activePlayer).getScoreCard().calculatePossibleValues();
+
+        resetUnusedValues();
+
         initializeTitleAndSaveButton();
         initializeUpperScorecardGraphics();
         initializeLowerScorecardGraphics();
@@ -100,7 +106,10 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         }
         displayPlayerUpperValues();
         displayPlayerLowerValues();
+
         updateTextColors();
+
+
 //        for(int i = 0; i < arrayList.size(); i++) {
 //            if(i == activePlayer) {
 //                arrayList.get(i).getScoreCard().setDiceHand(diceHand);
@@ -139,13 +148,22 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         buttonPanel.add(saveButton);
     }
 
+
+    private void resetUnusedValues() {
+        for(Player player : arrayList) {
+            ScoreCard scoreCard = player.getScoreCard();
+            scoreCard.getUpperScorecard().resetUnusedValues();
+            scoreCard.getLowerScorecard().resetUnusedValues();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
         if(e.getSource() == saveButton) {
             DiceRollFrame diceRollFrame = null;
             try {
-                diceRollFrame = new DiceRollFrame();
+                diceRollFrame = new DiceRollFrame(arrayList, (activePlayer-1) % arrayList.size());
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(1);
@@ -267,7 +285,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private void displayPlayerUpperValues() {
         //for the upper values
         for(int i = 0; i < arrayList.size(); i++) {
-            JLabel goodGuys = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getGoodGuys().getCurValue());
+            String curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getGoodGuys().getCurValue();
+            JLabel goodGuys = new JLabel(curVal);
             goodGuys.setBounds(325+(100*i),150,100,50);
             goodGuys.setForeground(Color.WHITE);
             goodGuys.setFont(instructionFont);
@@ -276,7 +295,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             buttonPanel.add(goodGuys);
 
-            JLabel princesses = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getPrincesses().getCurValue());
+            curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getPrincesses().getCurValue();
+            JLabel princesses = new JLabel(curVal);
             princesses.setBounds(325+(100*i),230,100,50);
             princesses.setForeground(Color.WHITE);
             princesses.setFont(instructionFont);
@@ -285,7 +305,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             buttonPanel.add(princesses);
 
-            JLabel animals = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getAnimals().getCurValue());
+            curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getAnimals().getCurValue();
+            JLabel animals = new JLabel(curVal);
             animals.setBounds(325+(100*i),310,100,50);
             animals.setForeground(Color.WHITE);
             animals.setFont(instructionFont);
@@ -294,7 +315,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             buttonPanel.add(animals);
 
-            JLabel badGuys = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getBadGuys().getCurValue());
+            curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getBadGuys().getCurValue();
+            JLabel badGuys = new JLabel(curVal);
             badGuys.setBounds(325+(100*i),400,100,50);
             badGuys.setForeground(Color.WHITE);
             badGuys.setFont(instructionFont);
@@ -303,7 +325,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             buttonPanel.add(badGuys);
 
-            JLabel firstTotal = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperSum());
+            curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperSum();
+            JLabel firstTotal = new JLabel(curVal);
             firstTotal.setBounds(325+(100*i),450,100,50);
             firstTotal.setForeground(Color.WHITE);
             firstTotal.setFont(instructionFont);
@@ -313,13 +336,16 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             if(arrayList.get(i).getScoreCard().getUpperScorecard().isHasBonus()) {
                 bonusVal = 45;
             }
-            JLabel bonus = new JLabel("" + bonusVal);
+
+            curVal = "" + bonusVal;
+            JLabel bonus = new JLabel(curVal);
             bonus.setBounds(325+(100*i),500,100,50);
             bonus.setForeground(Color.WHITE);
             bonus.setFont(instructionFont);
             buttonPanel.add(bonus);
 
-            JLabel secondTotal = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperTotal());
+            curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperTotal();
+            JLabel secondTotal = new JLabel(curVal);
             secondTotal.setBounds(325+(100*i),540,100,50);
             secondTotal.setForeground(Color.WHITE);
             secondTotal.setFont(instructionFont);
