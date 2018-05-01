@@ -114,13 +114,13 @@ public class ScoringPageFrame extends JFrame implements ActionListener{
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            Graphics2D g2 = (Graphics2D) g;
-            int w = DEFAULT_WIDTH;// real width of canvas
-            int h = DEFAULT_HEIGHT;// real height of canvas
-// Translate used to make sure scale is centered
-            g2.translate(w/4, h/4);
-            g2.scale(0.5, 0.5);
-            g2.translate(-w/2, -h/2);
+//            Graphics2D g2 = (Graphics2D) g;
+//            int w = DEFAULT_WIDTH;// real width of canvas
+//            int h = DEFAULT_HEIGHT;// real height of canvas
+//// Translate used to make sure scale is centered
+//            g2.translate(w/4, h/4);
+//            g2.scale(0.5, 0.5);
+//            g2.translate(-w/2, -h/2);
 
             g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image. SCALE_SMOOTH), 0, 0, this);
         }

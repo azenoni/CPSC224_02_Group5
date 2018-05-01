@@ -22,7 +22,7 @@ public class TestRunner {
 
         TitleScreenFrame frame = new TitleScreenFrame();
         frame.setTitle("ButtonTest");
-        frame.setVisible(false);
+        frame.setVisible(true);
 
         InstructionsPageFrame frame2 = new InstructionsPageFrame();
         frame2.setTitle("Instructions");
@@ -53,7 +53,7 @@ public class TestRunner {
         ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,0, diceHand);
         frame5.setTitle("Scorecard");
         frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame5.setVisible(true);
+        frame5.setVisible(false);
         
     }
 }

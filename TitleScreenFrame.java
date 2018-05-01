@@ -86,14 +86,14 @@ public class TitleScreenFrame extends JFrame implements ActionListener{
 
         @Override
         protected void paintComponent(Graphics g) {
-            Graphics2D g2 = (Graphics2D) g;
-            int w = DEFAULT_WIDTH;// real width of canvas
-            int h = DEFAULT_HEIGHT;// real height of canvas
-// Translate used to make sure scale is centered
-            g2.translate(w/4, h/4);
-            g2.scale(0.5, 0.5);
-            g2.translate(-w/2, -h/2);
             super.paintComponent(g);
+//            Graphics2D g2 = (Graphics2D) g;
+//            int w = DEFAULT_WIDTH;// real width of canvas
+//            int h = DEFAULT_HEIGHT;// real height of canvas
+//// Translate used to make sure scale is centered
+//            g2.translate(w/4, h/4);
+//            g2.scale(0.5, 0.5);
+//            g2.translate(-w/2, -h/2);
 
 
 
