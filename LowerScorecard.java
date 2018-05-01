@@ -108,7 +108,7 @@ public class LowerScorecard {
     }
 
     public void calculateTotalValue() {
-        lowerTotal += fiveOfAKind.getCurValue() + sevenOfAKind.getCurValue() + goodGuysRule.getCurValue() + badGuysSuck.getCurValue() + superMario.getCurValue() + evilBowser.getCurValue() + animalKingdom.getCurValue() + marioParty.getCurValue();
+        lowerTotal = fiveOfAKind.getCurValue() + sevenOfAKind.getCurValue() + goodGuysRule.getCurValue() + badGuysSuck.getCurValue() + superMario.getCurValue() + evilBowser.getCurValue() + animalKingdom.getCurValue() + marioParty.getCurValue();
     }
 
     /**

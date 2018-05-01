@@ -103,9 +103,10 @@ public class UpperScorecard {
         upperSum = goodGuys.getCurValue() + princesses.getCurValue() + animals.getCurValue() + badGuys.getCurValue();
         if(upperSum >= 200) {
             hasBonus = true;
-            upperSum += 45;
+            upperTotal = upperSum + 45;
+//            upperSum += 45;
         }
-        upperTotal = upperSum;
+
 
     }
 

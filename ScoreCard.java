@@ -16,7 +16,7 @@ import java.util.Collections;
 public class ScoreCard {
     private UpperScorecard upperScorecard;
     private LowerScorecard lowerScorecard;
-    public int scoreCardTotal;
+    private int scoreCardTotal;
     private ArrayList<Dice> diceHand;
 
     /**
@@ -73,6 +73,10 @@ public class ScoreCard {
     public void calculatePossibleValues() {
         performSumDiceCalculations();
         performLikeDiceCalculations();
+//        if(!hasFieldsRemaining()) {
+            upperScorecard.calculateScoreTotal();
+            lowerScorecard.calculateTotalValue();
+//        }
         lowerScorecard.getMarioParty().setCurValue(getCurrDiceValue());
     }
 
