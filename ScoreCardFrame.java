@@ -28,6 +28,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
 
     private JButton saveButton = new JButton("SAVE");
+    private JButton finishButton = new JButton("FINISH");
     private JButton goodGuys = new JButton("Good Guys");
     private JButton princesses = new JButton("Princesses");
     private JButton animals = new JButton("Animals");
@@ -121,9 +122,12 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         buttonPanel.setLayout(null);
 
         saveButton.setBackground(Color.WHITE);
+        finishButton.setBackground(Color.WHITE);
 
         title.setBounds(38,0,1200,150);
         saveButton.setBounds(30,975, 200,100);
+        finishButton.setBounds(250, 975, buttonWidth, buttonHeight);
+
 
         saveButton.setOpaque(true);
         saveButton.setBorderPainted(true);
@@ -132,11 +136,19 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         saveButton.setForeground(Color.BLACK);
         saveButton.addActionListener(this);
 
+        finishButton.setOpaque(true);
+        finishButton.setBorderPainted(true);
+        finishButton.setContentAreaFilled(true);
+        finishButton.setFont(buttonFont);
+        finishButton.setForeground(Color.BLACK);
+        finishButton.addActionListener(this);
+
         title.setForeground(Color.WHITE);
         title.setFont(titleFont);
 
         buttonPanel.add(title);
         buttonPanel.add(saveButton);
+        buttonPanel.add(finishButton);
     }
 
 
@@ -362,6 +374,9 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
                 marioParty.setForeground(Color.GREEN);
             }
             System.out.println("marioparty clicked");
+        } else if(e.getSource() == finishButton) {
+            System.out.println("finish button clicked");
+            EndGameFrame();
         }
     }
 
