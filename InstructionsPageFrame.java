@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class InstructionsPageFrame extends JFrame implements ActionListener{
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 2400;
-    private static final int DEFAULT_HEIGHT = 1200;
+    private static int DEFAULT_WIDTH = 2400;
+    private static int DEFAULT_HEIGHT = 1200;
 
     private JButton nextButton = new JButton("Next");
     private JButton mainMenuButton = new JButton("Main Menu");
@@ -35,6 +35,9 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
 
 
     public InstructionsPageFrame() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        DEFAULT_HEIGHT = (int)dimension.getHeight();
+        DEFAULT_WIDTH = (int)dimension.getWidth();
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ImagePanel();
@@ -44,10 +47,10 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         mainMenuButton.setBackground(Color.WHITE);
 
         title.setBounds(30,30,1000,100);
-        howToWinText.setBounds(75, 250, 600, 250);
-        howToPlayText.setBounds(750, 250, 900, 800);
-        nextButton.setBounds(45,980, 200,120);
-        mainMenuButton.setBounds(1735,980, 350,120);
+        howToWinText.setBounds(DEFAULT_WIDTH/15, DEFAULT_HEIGHT*2/10, 600, 250);
+        howToPlayText.setBounds(DEFAULT_WIDTH*6/15, DEFAULT_HEIGHT*2/10, 900, 800);
+        nextButton.setBounds(DEFAULT_WIDTH/20,DEFAULT_HEIGHT*13/15, 200,120);
+        mainMenuButton.setBounds(DEFAULT_WIDTH*16/20,DEFAULT_HEIGHT*13/15, 350,120);
 
         Font titleFont = new Font("Arial", Font.BOLD, 125);
         Font instructionFont = new Font("Arial", Font.PLAIN, 30);
@@ -94,11 +97,13 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
             } catch (FontFormatException e1) {
                 e1.printStackTrace();
             }
+            diceInstructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             diceInstructionFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == mainMenuButton) {
             System.out.println("Main menu button clicked");
             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
+            titleScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             titleScreenFrame.setVisible(true);
             this.dispose();
         }

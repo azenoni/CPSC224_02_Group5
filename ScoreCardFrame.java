@@ -80,6 +80,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JLabel lowerSectionTotal = new JLabel("<html>Lower Section <br>Total</html>");
     private JLabel grandTotal = new JLabel("GRAND TOTAL");
 
+    private boolean canSave = false;
+
 
 
 
@@ -205,20 +207,25 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
         if(e.getSource() == saveButton) {
             if((activePlayer == (arrayList.size() - 1)) && !arrayList.get(arrayList.size() - 1).getScoreCard().hasFieldsRemaining()) {
-                //push to new frame
+                EndGameFrame endGameFrame = new EndGameFrame(arrayList);
+                endGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                endGameFrame.setVisible(true);
             } else {
-                DiceRollFrame diceRollFrame = null;
-                try {
-                    diceRollFrame = new DiceRollFrame(arrayList, (activePlayer+1) % arrayList.size());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                    System.exit(1);
+                if(canSave) {
+                    DiceRollFrame diceRollFrame = null;
+                    try {
+                        diceRollFrame = new DiceRollFrame(arrayList, (activePlayer+1) % arrayList.size());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                        System.exit(1);
+                    }
+                    diceRollFrame.setVisible(true);
+                    this.dispose();
                 }
-                diceRollFrame.setVisible(true);
-                this.dispose();
             }
             System.out.println("save button clicked");
         } else if(e.getSource() == goodGuys) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getGoodGuys().isUsed()) {
                 goodGuys.setForeground(Color.WHITE);
@@ -229,6 +236,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("goodguys button clicked");
         } else if(e.getSource() == princesses) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getPrincesses().isUsed()) {
                 princesses.setForeground(Color.WHITE);
@@ -239,6 +247,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("princesses clicked");
         } else if(e.getSource() == animals) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getAnimals().isUsed()) {
                 scoreCard.getUpperScorecard().getAnimals().setUsed(false);
@@ -249,6 +258,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("animals clicked");
         } else if(e.getSource() == badGuys) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getBadGuys().isUsed()) {
                 scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
@@ -259,6 +269,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("badguys clicked");
         } else if(e.getSource() == fiveOfAKind) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getFiveOfAKind().isUsed()) {
                 scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
@@ -269,6 +280,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("fiveofakind clicked");
         } else if(e.getSource() == sevenOfAKind) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getSevenOfAKind().isUsed()) {
                 scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
@@ -279,6 +291,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("sevenofakind clicked");
         } else if(e.getSource() == goodGuysRule) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getGoodGuysRule().isUsed()) {
                 goodGuysRule.setForeground(Color.WHITE);
@@ -289,6 +302,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("goodguysrule clicked");
         } else if(e.getSource() == badGuysSuck) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getBadGuysSuck().isUsed()) {
                 scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
@@ -299,6 +313,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("badguyssuck clicked");
         } else if(e.getSource() == superMario) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getSuperMario().isUsed()) {
                 scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
@@ -309,6 +324,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("supermario clicked");
         } else if(e.getSource() == evilBowser) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getEvilBowser().isUsed()) {
                 scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
@@ -325,6 +341,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("evilbowser clicked");
         } else if(e.getSource() == animalKingdom) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getAnimalKingdom().isUsed()) {
                 scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
@@ -335,6 +352,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("animalkingdom clicked");
         } else if(e.getSource() == marioParty) {
+            canSave = true;
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getMarioParty().isUsed()) {
                 scoreCard.getLowerScorecard().getMarioParty().setUsed(false);

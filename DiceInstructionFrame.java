@@ -10,8 +10,8 @@ import static javax.imageio.ImageIO.*;
 
 public class DiceInstructionFrame extends JFrame implements ActionListener{
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 2400;
-    private static final int DEFAULT_HEIGHT = 1200;
+    private static int DEFAULT_WIDTH = 2400;
+    private static int DEFAULT_HEIGHT = 1200;
 
     private JButton backButton = new JButton("Back");
     private JButton nextButton = new JButton("Next");
@@ -23,6 +23,9 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
             "&emsp;&emsp;&emsp;&emsp;Bad Guys</font></html>");
 
     public DiceInstructionFrame () throws IOException, FontFormatException {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        DEFAULT_HEIGHT = (int)dimension.getHeight();
+        DEFAULT_WIDTH = (int)dimension.getWidth();
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ImagePanel();
@@ -33,14 +36,14 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         mainMenuButton.setBackground(Color.WHITE);
 
         title.setBounds(30,30,1000,100);
-        diceDescription.setBounds(225, 75, 1600, 250);
-        backButton.setBounds(45,980, 200,120);
-        nextButton.setBounds(300, 980, 200, 120);
-        mainMenuButton.setBounds(1735,980, 350,120);
+        diceDescription.setBounds(DEFAULT_WIDTH/10, DEFAULT_HEIGHT/15, 1600, 250);
+        backButton.setBounds(DEFAULT_WIDTH/18,DEFAULT_HEIGHT*13/15, 200,120);
+        nextButton.setBounds(DEFAULT_WIDTH*4/18, DEFAULT_HEIGHT*13/15, 200, 120);
+        mainMenuButton.setBounds(DEFAULT_WIDTH*15/18,DEFAULT_HEIGHT*13/15, 350,120);
 
-        Font titleFont = new Font("Arial", Font.BOLD, 125);
-        Font textFont = new Font("Arial", Font.ITALIC, 40);
-        Font buttonFont = new Font("Arial", Font.BOLD, 50);
+        Font titleFont = new Font("Arial", Font.BOLD, DEFAULT_WIDTH/20);
+        Font textFont = new Font("Arial", Font.ITALIC, DEFAULT_WIDTH/50);
+        Font buttonFont = new Font("Arial", Font.BOLD, DEFAULT_WIDTH/50);
 
         backButton.setOpaque(true);
         backButton.setBorderPainted(true);
@@ -81,16 +84,19 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         if(e.getSource() == backButton){
             System.out.println("Back button clicked");
             InstructionsPageFrame instructionsPageFrame = new InstructionsPageFrame();
+            instructionsPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             instructionsPageFrame.setVisible(true);
             this.dispose();
         } else if (e.getSource() == nextButton) {
             System.out.println("Next button clicked");
             ScoringInstructionFrame scoringInstructionFrame = new ScoringInstructionFrame();
+            scoringInstructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             scoringInstructionFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == mainMenuButton) {
             System.out.println("Main menu button clicked");
             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
+            titleScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             titleScreenFrame.setVisible(true);
             this.dispose();
         }
@@ -116,7 +122,7 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         private BufferedImage wario;
         private BufferedImage waluigi;
         private BufferedImage bowser;
-        private final int IMAGE_SIZE = 200;
+        private final int IMAGE_SIZE = DEFAULT_HEIGHT/10;
 
         public ImagePanel() throws IOException {
             super();
@@ -158,21 +164,21 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
 
             g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image.SCALE_SMOOTH), 0, 0, this);
             // Good Guys
-            g.drawImage(mario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 200, 250, this);
-            g.drawImage(luigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 200, 500, this);
-            g.drawImage(toad.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 200, 750, this);
+            g.drawImage(mario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(luigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(toad.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*25/40, this);
             // Princesses
-            g.drawImage(princessPeach.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 550, 250, this);
-            g.drawImage(daisy.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 550, 500, this);
-            g.drawImage(rosalina.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 550, 750, this);
+            g.drawImage(princessPeach.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(daisy.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(rosalina.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*25/40, this);
             // Animals
-            g.drawImage(yoshi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 900, 250, this);
-            g.drawImage(donkeyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 900, 500, this);
-            g.drawImage(diddyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 900, 750, this);
+            g.drawImage(yoshi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(donkeyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(diddyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*25/40, this);
             // Bad Guys
-            g.drawImage(wario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 1250, 250, this);
-            g.drawImage(waluigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 1250, 500, this);
-            g.drawImage(bowser.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), 1250, 750, this);
+            g.drawImage(wario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(waluigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(bowser.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*25/40, this);
         }
     }
 }

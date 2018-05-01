@@ -105,22 +105,37 @@ public class ScoreCard {
             }
         }
         if(numGoodGuys >= 6) {
-            lowerScorecard.getGoodGuysRule().setCurValue(35);
+            if(!lowerScorecard.getGoodGuysRule().isUsed())
+                lowerScorecard.getGoodGuysRule().setCurValue(35);
         } else {
-            lowerScorecard.getGoodGuysRule().setCurValue(0);
+            if(!lowerScorecard.getGoodGuysRule().isUsed())
+                lowerScorecard.getGoodGuysRule().setCurValue(0);
         }
         if(numBadBuys >= 6) {
-            lowerScorecard.getBadGuysSuck().setCurValue(-20);
+            if(!lowerScorecard.getBadGuysSuck().isUsed())
+                lowerScorecard.getBadGuysSuck().setCurValue(-20);
         } else {
-            lowerScorecard.getBadGuysSuck().setCurValue(0);
+            if(!lowerScorecard.getBadGuysSuck().isUsed())
+                lowerScorecard.getBadGuysSuck().setCurValue(0);
         }
         if(numMarios >= 8) {
-            lowerScorecard.getSuperMario().setCurValue(100);
+            if(!lowerScorecard.getSuperMario().isUsed())
+                lowerScorecard.getSuperMario().setCurValue(100);
         } else {
-            lowerScorecard.getSuperMario().setCurValue(0);
+            if(!lowerScorecard.getSuperMario().isUsed())
+                lowerScorecard.getSuperMario().setCurValue(0);
         }
         if(numBowsers >= 8) {
             // choose player to deduct points from
+        }
+        if(numAnimals > 10) {
+            if(!lowerScorecard.getAnimalKingdom().isUsed()) {
+                lowerScorecard.getAnimalKingdom().setCurValue(50);
+            }
+        } else {
+            if(!lowerScorecard.getAnimalKingdom().isUsed()) {
+                lowerScorecard.getAnimalKingdom().setCurValue(0);
+            }
         }
     }
 
@@ -202,48 +217,96 @@ public class ScoreCard {
                 badGuysTotal += 5;
             }
         }
-        upperScorecard.getGoodGuys().setCurValue(goodGuysTotal);
-        upperScorecard.getPrincesses().setCurValue(princessesTotal);
-        upperScorecard.getAnimals().setCurValue(animalsTotal);
-        upperScorecard.getBadGuys().setCurValue(badGuysTotal);
+        if(!upperScorecard.getGoodGuys().isUsed()) {
+            upperScorecard.getGoodGuys().setCurValue(goodGuysTotal);
+        }
+        if(!upperScorecard.getPrincesses().isUsed()) {
+            upperScorecard.getPrincesses().setCurValue(princessesTotal);
+        }
+        if(!upperScorecard.getAnimals().isUsed()) {
+            upperScorecard.getAnimals().setCurValue(animalsTotal);
+        }
+        if(!upperScorecard.getBadGuys().isUsed()) {
+            upperScorecard.getBadGuys().setCurValue(badGuysTotal);
+        }
 
         if(goodGuysTotal > princessesTotal && goodGuysTotal > animalsTotal && goodGuysTotal > badGuysTotal) {
             if(goodGuysTotal / 20 >= 7) {
-                lowerScorecard.getSevenOfAKind().setCurValue(goodGuysTotal * 7);
-                lowerScorecard.getFiveOfAKind().setCurValue(goodGuysTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(goodGuysTotal * 7);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(goodGuysTotal * 5);
+                }
             } else if(goodGuysTotal / 20 >= 5){
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
-                lowerScorecard.getFiveOfAKind().setCurValue(goodGuysTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(goodGuysTotal * 5);
+                }
             } else {
-                lowerScorecard.getFiveOfAKind().setCurValue(0);
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(0);
+                }
             }
         } else if(princessesTotal > goodGuysTotal && princessesTotal > animalsTotal && princessesTotal > badGuysTotal) {
             if(princessesTotal / 15 >= 7) {
-                lowerScorecard.getSevenOfAKind().setCurValue(princessesTotal * 7);
-                lowerScorecard.getFiveOfAKind().setCurValue(princessesTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(princessesTotal * 7);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(princessesTotal * 5);
+                }
             } else if(princessesTotal / 15 >= 5){
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
-                lowerScorecard.getFiveOfAKind().setCurValue(princessesTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(princessesTotal * 5);
+                }
             } else {
-                lowerScorecard.getFiveOfAKind().setCurValue(0);
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(0);
+                }
             }
         } else if(animalsTotal > goodGuysTotal && animalsTotal > princessesTotal && animalsTotal > badGuysTotal) {
             if(animalsTotal / 10 >= 7) {
-                lowerScorecard.getSevenOfAKind().setCurValue(animalsTotal * 7);
-                lowerScorecard.getFiveOfAKind().setCurValue(animalsTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(animalsTotal * 7);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(animalsTotal * 5);
+                }
             } else if(animalsTotal / 10 >= 5){
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
-                lowerScorecard.getFiveOfAKind().setCurValue(animalsTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(animalsTotal * 5);
+                }
             } else {
-                lowerScorecard.getFiveOfAKind().setCurValue(0);
-                lowerScorecard.getSevenOfAKind().setCurValue(0);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(0);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(0);
+                }
             }
         } else {
             if(badGuysTotal / 5 >= 7) {
-                lowerScorecard.getSevenOfAKind().setCurValue(badGuysTotal * 7);
-                lowerScorecard.getFiveOfAKind().setCurValue(badGuysTotal * 5);
+                if(!lowerScorecard.getSevenOfAKind().isUsed()) {
+                    lowerScorecard.getSevenOfAKind().setCurValue(badGuysTotal * 7);
+                }
+                if(!lowerScorecard.getFiveOfAKind().isUsed()) {
+                    lowerScorecard.getFiveOfAKind().setCurValue(badGuysTotal * 5);
+                }
             } else if(badGuysTotal / 5 >= 5){
                 lowerScorecard.getSevenOfAKind().setCurValue(0);
                 lowerScorecard.getFiveOfAKind().setCurValue(badGuysTotal * 5);
@@ -275,5 +338,13 @@ public class ScoreCard {
         upperScorecard.calculateScoreTotal();
         lowerScorecard.calculateTotalValue();
         scoreCardTotal = upperScorecard.getUpperTotal() + lowerScorecard.getLowerTotal();
+    }
+
+    public int getScoreCardTotal() {
+        return scoreCardTotal;
+    }
+
+    public void setScoreCardTotal(int scoreCardTotal) {
+        this.scoreCardTotal = scoreCardTotal;
     }
 }

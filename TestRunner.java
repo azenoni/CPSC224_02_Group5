@@ -5,11 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestRunner {
-    private ArrayList<Player> arrayList;
-    public Player getValueAt(int a) {return arrayList.get(a);}
-
 
     public static void main(String[] args) throws IOException {
         Player firstPlayer = new Player(10,12);
@@ -35,7 +33,7 @@ public class TestRunner {
         frame3.setTitle("Scoring");
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame3.setVisible(false);
-
+        
         DiceRollFrame frame4 = new DiceRollFrame();
         frame4.setTitle("Game");
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,5 +55,9 @@ public class TestRunner {
         frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame5.setVisible(false);
 
+        EndGameFrame endGameFrame = new EndGameFrame(arrayList);
+        endGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        endGameFrame.setVisible(false);
+        
     }
 }
