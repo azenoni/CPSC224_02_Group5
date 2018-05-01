@@ -376,7 +376,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             System.out.println("marioparty clicked");
         } else if(e.getSource() == finishButton) {
             System.out.println("finish button clicked");
-            EndGameFrame();
+            EndGameFrame endGameFrame = new EndGameFrame(arrayList);
         }
     }
 
