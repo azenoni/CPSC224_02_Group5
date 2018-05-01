@@ -84,7 +84,7 @@ public class EndGameFrame extends JFrame implements ActionListener{
              TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
              titleScreenFrame.setVisible(true);
              this.dispose();
-        }if else(e.getSource() == exitButton) {
+        }else if(e.getSource() == exitButton) {
             this.dispose();
         }
     }
