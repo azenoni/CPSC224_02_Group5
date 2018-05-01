@@ -38,10 +38,10 @@ public class EndGameFrame extends JFrame implements ActionListener{
         player3.setBounds(/*set bounds*/);
         player4.setBounds(/*set bounds*/);
 
-        player1.setText("Player 1's score is: " + String.valueOf(TestRunner.getValueAt(1).getFinalScore()));
-        player2.setText("Player 2's score is: " + String.valueOf(TestRunner.getValueAt(2).getFinalScore()));
-        player3.setText("Player 3's score is: " + String.valueOf(TestRunner.getValueAt(3).getFinalScore()));
-        player4.setText("Player 4's score is: " + String.valueOf(TestRunner.getValueAt(4).getFinalScore()));
+        player1.setText("Player 1's score is: " + String.valueOf(TestRunner.getValueAt(0).getScoreCard().scoreCardTotal));
+        player2.setText("Player 2's score is: " + String.valueOf(TestRunner.getValueAt(1).getScoreCard().scoreCardTotal));
+        player3.setText("Player 3's score is: " + String.valueOf(TestRunner.getValueAt(2).getScoreCard().scoreCardTotal));
+        player4.setText("Player 4's score is: " + String.valueOf(TestRunner.getValueAt(3).getScoreCard().scoreCardTotal));
 
 
 
