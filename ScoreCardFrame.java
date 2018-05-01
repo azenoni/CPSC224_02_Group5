@@ -40,7 +40,6 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JButton animalKingdom = new JButton("<html>Animal <br>Kingdom</html>");
     private JButton marioParty = new JButton("Mario Party");
 
-
     private JLabel title = new JLabel("<html><strong>PLAYER 1</strong></html>");
     private JLabel upperSection = new JLabel("<html><strong>Upper Section:</strong></html>");
     private JLabel lowerSection = new JLabel("<html><strong>Lower Section:</strong></html>");
@@ -119,13 +118,13 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         saveButton.setBackground(Color.WHITE);
 
         title.setBounds(38,0,1200,150);
-        saveButton.setBounds(0,975, 225,75);
+        saveButton.setBounds(30,975, 200,100);
 
-        saveButton.setOpaque(false);
-        saveButton.setBorderPainted(false);
-        saveButton.setContentAreaFilled(false);
+        saveButton.setOpaque(true);
+        saveButton.setBorderPainted(true);
+        saveButton.setContentAreaFilled(true);
         saveButton.setFont(buttonFont);
-        saveButton.setForeground(Color.WHITE);
+        saveButton.setForeground(Color.BLACK);
         saveButton.addActionListener(this);
 
         title.setForeground(Color.WHITE);
@@ -143,22 +142,55 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             scoreCard.getLowerScorecard().resetUnusedValues();
         }
     }
+    private void revertBackToOriginal() {
+        ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
+        scoreCard.getUpperScorecard().getGoodGuys().setUsed(false);
+        scoreCard.getUpperScorecard().getPrincesses().setUsed(false);
+        scoreCard.getUpperScorecard().getAnimals().setUsed(false);
+        scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
+        scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
+        scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
+        scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(false);
+        scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
+        scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
+        scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
+        scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
+        scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
+
+        goodGuys.setForeground(Color.WHITE);
+        princesses.setForeground(Color.WHITE);
+        animals.setForeground(Color.WHITE);
+        badGuys.setForeground(Color.WHITE);
+        fiveOfAKind.setForeground(Color.WHITE);
+        sevenOfAKind.setForeground(Color.WHITE);
+        superMario.setForeground(Color.WHITE);
+        evilBowser.setForeground(Color.WHITE);
+        animalKingdom.setForeground(Color.WHITE);
+        marioParty.setForeground(Color.WHITE);
+        goodGuysRule.setForeground(Color.WHITE);
+        badGuysSuck.setForeground(Color.WHITE);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
         if(e.getSource() == saveButton) {
-            DiceRollFrame diceRollFrame = null;
-            try {
-                diceRollFrame = new DiceRollFrame(arrayList, (activePlayer + 1) % arrayList.size());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                System.exit(1);
+            if((activePlayer == (arrayList.size() - 1)) && !arrayList.get(arrayList.size() - 1).getScoreCard().hasFieldsRemaining()) {
+                //push to new frame
+            } else {
+                DiceRollFrame diceRollFrame = null;
+                try {
+                    diceRollFrame = new DiceRollFrame(arrayList, (activePlayer+1) % arrayList.size());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    System.exit(1);
+                }
+                diceRollFrame.setVisible(true);
+                this.dispose();
             }
-            diceRollFrame.setVisible(true);
-            this.dispose();
             System.out.println("save button clicked");
         } else if(e.getSource() == goodGuys) {
+            revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getGoodGuys().isUsed()) {
                 goodGuys.setForeground(Color.WHITE);
                 scoreCard.getUpperScorecard().getGoodGuys().setUsed(false);
@@ -168,6 +200,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("goodguys button clicked");
         } else if(e.getSource() == princesses) {
+            revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getPrincesses().isUsed()) {
                 princesses.setForeground(Color.WHITE);
                 scoreCard.getUpperScorecard().getPrincesses().setUsed(false);
@@ -177,6 +210,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("princesses clicked");
         } else if(e.getSource() == animals) {
+            revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getAnimals().isUsed()) {
                 scoreCard.getUpperScorecard().getAnimals().setUsed(false);
                 animals.setForeground(Color.WHITE);
@@ -186,6 +220,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("animals clicked");
         } else if(e.getSource() == badGuys) {
+            revertBackToOriginal();
             if(scoreCard.getUpperScorecard().getBadGuys().isUsed()) {
                 scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
                 badGuys.setForeground(Color.WHITE);
@@ -195,6 +230,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("badguys clicked");
         } else if(e.getSource() == fiveOfAKind) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getFiveOfAKind().isUsed()) {
                 scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
                 fiveOfAKind.setForeground(Color.WHITE);
@@ -204,6 +240,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("fiveofakind clicked");
         } else if(e.getSource() == sevenOfAKind) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getSevenOfAKind().isUsed()) {
                 scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
                 sevenOfAKind.setForeground(Color.WHITE);
@@ -213,6 +250,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("sevenofakind clicked");
         } else if(e.getSource() == goodGuysRule) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getGoodGuysRule().isUsed()) {
                 goodGuysRule.setForeground(Color.WHITE);
                 scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(false);
@@ -222,6 +260,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("goodguysrule clicked");
         } else if(e.getSource() == badGuysSuck) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getBadGuysSuck().isUsed()) {
                 scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
                 badGuysSuck.setForeground(Color.WHITE);
@@ -231,6 +270,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("badguyssuck clicked");
         } else if(e.getSource() == superMario) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getSuperMario().isUsed()) {
                 scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
                 superMario.setForeground(Color.WHITE);
@@ -240,15 +280,23 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("supermario clicked");
         } else if(e.getSource() == evilBowser) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getEvilBowser().isUsed()) {
                 scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
+                for(Player player : arrayList) {
+                    player.getScoreCard().getLowerScorecard().getEvilBowser().setUsed(false);
+                }
                 evilBowser.setForeground(Color.WHITE);
             } else {
+                for(Player player : arrayList) {
+                    player.getScoreCard().getLowerScorecard().getEvilBowser().setUsed(true);
+                }
                 scoreCard.getLowerScorecard().getEvilBowser().setUsed(true);
                 evilBowser.setForeground(Color.GREEN);
             }
             System.out.println("evilbowser clicked");
         } else if(e.getSource() == animalKingdom) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getAnimalKingdom().isUsed()) {
                 scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
                 animalKingdom.setForeground(Color.WHITE);
@@ -258,6 +306,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             }
             System.out.println("animalkingdom clicked");
         } else if(e.getSource() == marioParty) {
+            revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getMarioParty().isUsed()) {
                 scoreCard.getLowerScorecard().getMarioParty().setUsed(true);
                 marioParty.setForeground(Color.WHITE);
@@ -268,6 +317,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             System.out.println("marioparty clicked");
         }
     }
+
 
     private void displayPlayerUpperValues() {
         //for the upper values
