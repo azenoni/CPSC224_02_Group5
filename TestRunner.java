@@ -21,7 +21,7 @@ public class TestRunner {
 
         TitleScreenFrame frame = new TitleScreenFrame();
         frame.setTitle("ButtonTest");
-        frame.setVisible(true);
+        frame.setVisible(false);
 
         InstructionsPageFrame frame2 = new InstructionsPageFrame();
         frame2.setTitle("Instructions");
@@ -38,10 +38,10 @@ public class TestRunner {
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame4.setVisible(false);
 
-        ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,0, null);
+        ScoreCardFrame frame5 = new ScoreCardFrame(arrayList,1, null);
         frame5.setTitle("Scorecard");
         frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame5.setVisible(false);
+        frame5.setVisible(true);
         
     }
 }

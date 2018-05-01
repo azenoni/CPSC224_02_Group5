@@ -12,6 +12,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
     private ArrayList<Player> arrayList;
     private int activePlayer;
+    private ArrayList<Dice> diceHand;
 
 
 
@@ -24,8 +25,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private final int buttonDiff = 80;
 
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 2400;
-    private static final int DEFAULT_HEIGHT = 1200;
+    private static final int DEFAULT_WIDTH = 1600;
+    private static final int DEFAULT_HEIGHT = 800;
 
     private JButton saveButton = new JButton("SAVE");
     private JButton goodGuys = new JButton("Good Guys");
@@ -42,7 +43,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JButton marioParty = new JButton("Mario Party");
 
 
-    private JLabel title = new JLabel("<html><strong>SCORECARD</strong></html>");
+    private JLabel title = new JLabel("<html><strong>PLAYER 1</strong></html>");
     private JLabel upperSection = new JLabel("<html><strong>Upper Section:</strong></html>");
     private JLabel lowerSection = new JLabel("<html><strong>Lower Section:</strong></html>");
     private JLabel howToScoreFirst = new JLabel("<html><strong>How to score:</strong></html>");
@@ -62,9 +63,9 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JLabel fiveOfAKindDescription = new JLabel("<html>Points of \"like\" characters multiplied by 5</html>");
     private JLabel sevenOfAKindDescription = new JLabel("<html>Points of \"like\" characters multiplied by 7</html>");
     private JLabel goodGuysRuleDescription = new JLabel("35 points");
-    private JLabel badGuysSuckDescription = new JLabel("-10 points");
+    private JLabel badGuysSuckDescription = new JLabel("-20 points");
     private JLabel superMarioDescription = new JLabel("100 points");
-    private JLabel evilBowserDescription = new JLabel("-50 points");
+    private JLabel evilBowserDescription = new JLabel("<html>-50 points from every <br>other player</html>");
     private JLabel animalKingdomDescription = new JLabel("50 points");
     private JLabel marioPartyDescription = new JLabel("Sum of all dice");
     private JLabel firstArrow = new JLabel("--------------------->");
@@ -86,9 +87,17 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     public ScoreCardFrame(ArrayList<Player> arrayList, int activePlayer, ArrayList<Dice> diceHand) {
         this.arrayList = arrayList;
         this.activePlayer = activePlayer;
+        this.diceHand = diceHand;
         initializeTitleAndSaveButton();
         initializeUpperScorecardGraphics();
         initializeLowerScorecardGraphics();
+        if(activePlayer == 1) {
+            title.setText("<html><strong>PLAYER 2</strong></html>");
+        } else if(activePlayer == 2) {
+            title.setText("<html><strong>PLAYER 3</strong></html>");
+        } else if(activePlayer == 3) {
+            title.setText("<html><strong>PLAYER 4</strong></html>");
+        }
         displayPlayerUpperValues();
         displayPlayerLowerValues();
         updateTextColors();
@@ -134,42 +143,123 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
         if(e.getSource() == saveButton) {
+            DiceRollFrame diceRollFrame = null;
+            try {
+                diceRollFrame = new DiceRollFrame();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                System.exit(1);
+            }
+            diceRollFrame.setVisible(true);
+            this.dispose();
             System.out.println("save button clicked");
         } else if(e.getSource() == goodGuys) {
-            scoreCard.getUpperScorecard().getGoodGuys().setUsed(true);
+            if(scoreCard.getUpperScorecard().getGoodGuys().isUsed()) {
+                goodGuys.setForeground(Color.WHITE);
+                scoreCard.getUpperScorecard().getGoodGuys().setUsed(false);
+            } else {
+                goodGuys.setForeground(Color.GREEN);
+                scoreCard.getUpperScorecard().getGoodGuys().setUsed(true);
+            }
             System.out.println("goodguys button clicked");
         } else if(e.getSource() == princesses) {
-            scoreCard.getUpperScorecard().getPrincesses().setUsed(true);
+            if(scoreCard.getUpperScorecard().getPrincesses().isUsed()) {
+                princesses.setForeground(Color.WHITE);
+                scoreCard.getUpperScorecard().getPrincesses().setUsed(false);
+            } else {
+                princesses.setForeground(Color.GREEN);
+                scoreCard.getUpperScorecard().getPrincesses().setUsed(true);
+            }
             System.out.println("princesses clicked");
         } else if(e.getSource() == animals) {
-            scoreCard.getUpperScorecard().getAnimals().setUsed(true);
+            if(scoreCard.getUpperScorecard().getAnimals().isUsed()) {
+                scoreCard.getUpperScorecard().getAnimals().setUsed(false);
+                animals.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getUpperScorecard().getAnimals().setUsed(true);
+                animals.setForeground(Color.GREEN);
+            }
             System.out.println("animals clicked");
         } else if(e.getSource() == badGuys) {
-            scoreCard.getUpperScorecard().getBadGuys().setUsed(true);
+            if(scoreCard.getUpperScorecard().getBadGuys().isUsed()) {
+                scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
+                badGuys.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getUpperScorecard().getBadGuys().setUsed(true);
+                badGuys.setForeground(Color.GREEN);
+            }
             System.out.println("badguys clicked");
         } else if(e.getSource() == fiveOfAKind) {
-            scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(true);
+            if(scoreCard.getLowerScorecard().getFiveOfAKind().isUsed()) {
+                scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
+                fiveOfAKind.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(true);
+                fiveOfAKind.setForeground(Color.GREEN);
+            }
             System.out.println("fiveofakind clicked");
         } else if(e.getSource() == sevenOfAKind) {
-            scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(true);
+            if(scoreCard.getLowerScorecard().getSevenOfAKind().isUsed()) {
+                scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
+                sevenOfAKind.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(true);
+                sevenOfAKind.setForeground(Color.GREEN);
+            }
             System.out.println("sevenofakind clicked");
         } else if(e.getSource() == goodGuysRule) {
-            scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(true);
+            if(scoreCard.getLowerScorecard().getGoodGuysRule().isUsed()) {
+                goodGuysRule.setForeground(Color.WHITE);
+                scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(false);
+            } else {
+                scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(true);
+                goodGuysRule.setForeground(Color.GREEN);
+            }
             System.out.println("goodguysrule clicked");
         } else if(e.getSource() == badGuysSuck) {
-            scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(true);
+            if(scoreCard.getLowerScorecard().getBadGuysSuck().isUsed()) {
+                scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
+                badGuysSuck.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(true);
+                badGuysSuck.setForeground(Color.GREEN);
+            }
             System.out.println("badguyssuck clicked");
         } else if(e.getSource() == superMario) {
-            scoreCard.getLowerScorecard().getSuperMario().setUsed(true);
+            if(scoreCard.getLowerScorecard().getSuperMario().isUsed()) {
+                scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
+                superMario.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getSuperMario().setUsed(true);
+                superMario.setForeground(Color.GREEN);
+            }
             System.out.println("supermario clicked");
         } else if(e.getSource() == evilBowser) {
-            scoreCard.getLowerScorecard().getEvilBowser().setUsed(true);
+            if(scoreCard.getLowerScorecard().getEvilBowser().isUsed()) {
+                scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
+                evilBowser.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getEvilBowser().setUsed(true);
+                evilBowser.setForeground(Color.GREEN);
+            }
             System.out.println("evilbowser clicked");
         } else if(e.getSource() == animalKingdom) {
-            scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(true);
+            if(scoreCard.getLowerScorecard().getAnimalKingdom().isUsed()) {
+                scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
+                animalKingdom.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(true);
+                animalKingdom.setForeground(Color.GREEN);
+            }
             System.out.println("animalkingdom clicked");
         } else if(e.getSource() == marioParty) {
-            scoreCard.getLowerScorecard().getMarioParty().setUsed(true);
+            if(scoreCard.getLowerScorecard().getMarioParty().isUsed()) {
+                scoreCard.getLowerScorecard().getMarioParty().setUsed(true);
+                marioParty.setForeground(Color.WHITE);
+            } else {
+                scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
+                marioParty.setForeground(Color.GREEN);
+            }
             System.out.println("marioparty clicked");
         }
     }
@@ -384,7 +474,6 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             marioParty.setForeground(Color.GREEN);
         }
     }
-
 
     private void initializeUpperScorecardGraphics() {
         int upperButtonStart = 150;
@@ -750,4 +839,3 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
     }
 }
-
