@@ -126,7 +126,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
         title.setBounds(38,0,1200,150);
         saveButton.setBounds(30,975, 200,100);
-        finishButton.setBounds(250, 975, buttonWidth, buttonHeight);
+        finishButton.setBounds(250, 975, 200, 100);
 
 
         saveButton.setOpaque(true);
