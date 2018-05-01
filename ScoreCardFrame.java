@@ -14,19 +14,18 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private int activePlayer;
     private ArrayList<Dice> diceHand;
 
+    private final Font buttonFont = new Font("Arial", Font.BOLD, 45);
+    private final Font titleFont = new Font("Arial", Font.BOLD, 120);
+    private final Font instructionFont = new Font("Arial", Font.PLAIN, 28);
 
-
-    private final Font buttonFont = new Font("Arial", Font.BOLD, 30);
-    private final Font titleFont = new Font("Arial", Font.BOLD, 80);
-    private final Font instructionFont = new Font("Arial", Font.PLAIN, 18);
-
-    private final int buttonWidth = 150;
-    private final int buttonHeight = 40;
-    private final int buttonDiff = 80;
+    private final int buttonWidth = 225;
+    private final int buttonHeight = 60;
+    private final int buttonDiff = 120;
 
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 1600;
-    private static final int DEFAULT_HEIGHT = 800;
+    private static final int DEFAULT_WIDTH = 2400;
+    private static final int DEFAULT_HEIGHT = 1350;
+
 
     private JButton saveButton = new JButton("SAVE");
     private JButton goodGuys = new JButton("Good Guys");
@@ -68,11 +67,11 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JLabel evilBowserDescription = new JLabel("<html>-50 points from every <br>other player</html>");
     private JLabel animalKingdomDescription = new JLabel("50 points");
     private JLabel marioPartyDescription = new JLabel("Sum of all dice");
-    private JLabel firstArrow = new JLabel("--------------------->");
-    private JLabel secondArrow = new JLabel("--------------------->");
-    private JLabel upperSectionArrow = new JLabel("--------------------->");
-    private JLabel lowerSectionArrow = new JLabel("--------------------->");
-    private JLabel grandTotalArrow = new JLabel("--------------------->");
+    private JLabel firstArrow = new JLabel("------------------>");
+    private JLabel secondArrow = new JLabel("------------------>");
+    private JLabel upperSectionArrow = new JLabel("------------------>");
+    private JLabel lowerSectionArrow = new JLabel("------------------>");
+    private JLabel grandTotalArrow = new JLabel("------------------>");
     private JLabel bonusDescription = new JLabel("45 points");
     private JLabel total = new JLabel("Total");
     private JLabel secondTotal = new JLabel("Total");
@@ -109,16 +108,6 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
         updateTextColors();
 
-
-//        for(int i = 0; i < arrayList.size(); i++) {
-//            if(i == activePlayer) {
-//                arrayList.get(i).getScoreCard().setDiceHand(diceHand);
-//            } else {
-//                arrayList.get(i).getScoreCard().setDiceHand(new ArrayList<>());
-//            }
-//            arrayList.get(i).getScoreCard().calculatePossibleValues();
-//        }
-
         buttonPanel.setLocation(10,100);
         add(buttonPanel);
     }
@@ -131,14 +120,14 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
         saveButton.setBackground(Color.WHITE);
 
-        title.setBounds(25,0,800,100);
-        saveButton.setBounds(0,650, 150,50);
+        title.setBounds(38,0,1200,150);
+        saveButton.setBounds(30,975, 200,100);
 
-        saveButton.setOpaque(false);
-        saveButton.setBorderPainted(false);
-        saveButton.setContentAreaFilled(false);
+        saveButton.setOpaque(true);
+        saveButton.setBorderPainted(true);
+        saveButton.setContentAreaFilled(true);
         saveButton.setFont(buttonFont);
-        saveButton.setForeground(Color.WHITE);
+        saveButton.setForeground(Color.BLACK);
         saveButton.addActionListener(this);
 
         title.setForeground(Color.WHITE);
@@ -159,18 +148,41 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
     private void revertBackToOriginal() {
         ScoreCard scoreCard = arrayList.get(activePlayer).getScoreCard();
-        scoreCard.getUpperScorecard().getGoodGuys().setUsed(false);
-        scoreCard.getUpperScorecard().getPrincesses().setUsed(false);
-        scoreCard.getUpperScorecard().getAnimals().setUsed(false);
-        scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
-        scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
-        scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
-        scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(false);
-        scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
-        scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
-        scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
-        scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
-        scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
+        if(goodGuys.isEnabled()) {
+            scoreCard.getUpperScorecard().getGoodGuys().setUsed(false);
+        }
+        if(princesses.isEnabled()) {
+            scoreCard.getUpperScorecard().getPrincesses().setUsed(false);
+        }
+        if(animals.isEnabled()) {
+            scoreCard.getUpperScorecard().getAnimals().setUsed(false);
+        }
+        if(badGuys.isEnabled()) {
+            scoreCard.getUpperScorecard().getBadGuys().setUsed(false);
+        }
+        if(fiveOfAKind.isEnabled()) {
+            scoreCard.getLowerScorecard().getFiveOfAKind().setUsed(false);
+        }
+        if(sevenOfAKind.isEnabled()) {
+            scoreCard.getLowerScorecard().getSevenOfAKind().setUsed(false);
+        }
+        if(goodGuysRule.isEnabled()) {
+            scoreCard.getLowerScorecard().getGoodGuysRule().setUsed(false);
+        }
+        if(badGuysSuck.isEnabled()) {
+            scoreCard.getLowerScorecard().getBadGuysSuck().setUsed(false);
+        }
+        if(superMario.isEnabled()) {
+            scoreCard.getLowerScorecard().getSuperMario().setUsed(false);
+        }
+        if(evilBowser.isEnabled()) {
+            scoreCard.getLowerScorecard().getEvilBowser().setUsed(false);
+        }
+        if(animalKingdom.isEnabled()) {
+            scoreCard.getLowerScorecard().getAnimalKingdom().setUsed(false);
+        } if(marioParty.isEnabled()) {
+            scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
+        }
 
         goodGuys.setForeground(Color.WHITE);
         princesses.setForeground(Color.WHITE);
@@ -325,10 +337,10 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         } else if(e.getSource() == marioParty) {
             revertBackToOriginal();
             if(scoreCard.getLowerScorecard().getMarioParty().isUsed()) {
-                scoreCard.getLowerScorecard().getMarioParty().setUsed(true);
+                scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
                 marioParty.setForeground(Color.WHITE);
             } else {
-                scoreCard.getLowerScorecard().getMarioParty().setUsed(false);
+                scoreCard.getLowerScorecard().getMarioParty().setUsed(true);
                 marioParty.setForeground(Color.GREEN);
             }
             System.out.println("marioparty clicked");
@@ -340,7 +352,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         for(int i = 0; i < arrayList.size(); i++) {
             String curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getGoodGuys().getCurValue();
             JLabel goodGuys = new JLabel(curVal);
-            goodGuys.setBounds(325+(100*i),150,100,50);
+            goodGuys.setBounds(488+(150*i),225,150,75);
             goodGuys.setForeground(Color.WHITE);
             goodGuys.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getUpperScorecard().getGoodGuys().isUsed()) {
@@ -350,7 +362,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
             curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getPrincesses().getCurValue();
             JLabel princesses = new JLabel(curVal);
-            princesses.setBounds(325+(100*i),230,100,50);
+            princesses.setBounds(488+(150*i),345,150,75);
             princesses.setForeground(Color.WHITE);
             princesses.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getUpperScorecard().getPrincesses().isUsed()) {
@@ -360,7 +372,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
             curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getAnimals().getCurValue();
             JLabel animals = new JLabel(curVal);
-            animals.setBounds(325+(100*i),310,100,50);
+            animals.setBounds(488+(150*i),465,150,75);
             animals.setForeground(Color.WHITE);
             animals.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getUpperScorecard().getAnimals().isUsed()) {
@@ -370,7 +382,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
             curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getBadGuys().getCurValue();
             JLabel badGuys = new JLabel(curVal);
-            badGuys.setBounds(325+(100*i),400,100,50);
+            badGuys.setBounds(488+(150*i),600,150,75);
             badGuys.setForeground(Color.WHITE);
             badGuys.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getUpperScorecard().getBadGuys().isUsed()) {
@@ -380,7 +392,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
             curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperSum();
             JLabel firstTotal = new JLabel(curVal);
-            firstTotal.setBounds(325+(100*i),450,100,50);
+            firstTotal.setBounds(488+(150*i),675,150,75);
             firstTotal.setForeground(Color.WHITE);
             firstTotal.setFont(instructionFont);
             buttonPanel.add(firstTotal);
@@ -392,14 +404,14 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
             curVal = "" + bonusVal;
             JLabel bonus = new JLabel(curVal);
-            bonus.setBounds(325+(100*i),500,100,50);
+            bonus.setBounds(488+(150*i),750,150,75);
             bonus.setForeground(Color.WHITE);
             bonus.setFont(instructionFont);
             buttonPanel.add(bonus);
 
             curVal = "" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperTotal();
             JLabel secondTotal = new JLabel(curVal);
-            secondTotal.setBounds(325+(100*i),540,100,50);
+            secondTotal.setBounds(488+(150*i),810,150,75);
             secondTotal.setForeground(Color.WHITE);
             secondTotal.setFont(instructionFont);
             buttonPanel.add(secondTotal);
@@ -409,7 +421,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private void displayPlayerLowerValues() {
         for(int i = 0; i < arrayList.size(); i++) {
             JLabel fiveOfAKind = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getFiveOfAKind().getCurValue());
-            fiveOfAKind.setBounds(1060+(100*i),125,100,50);
+            fiveOfAKind.setBounds(1590+(150*i),188,150,75);
             fiveOfAKind.setForeground(Color.WHITE);
             fiveOfAKind.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getFiveOfAKind().isUsed()) {
@@ -418,7 +430,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(fiveOfAKind);
 
             JLabel sevenOfAKind = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getSevenOfAKind().getCurValue());
-            sevenOfAKind.setBounds(1060+(100*i),230,100,50);
+            sevenOfAKind.setBounds(1590+(150*i),345,150,75);
             sevenOfAKind.setForeground(Color.WHITE);
             sevenOfAKind.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getSevenOfAKind().isUsed()) {
@@ -427,7 +439,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(sevenOfAKind);
 
             JLabel goodGuysRule = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getGoodGuysRule().getCurValue());
-            goodGuysRule.setBounds(1060+(100*i),310,100,50);
+            goodGuysRule.setBounds(1590+(150*i),465,150,75);
             goodGuysRule.setForeground(Color.WHITE);
             goodGuysRule.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getGoodGuysRule().isUsed()) {
@@ -436,7 +448,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(goodGuysRule);
 
             JLabel badGuysSuck = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getBadGuysSuck().getCurValue());
-            badGuysSuck.setBounds(1060+(100*i),350,100,50);
+            badGuysSuck.setBounds(1590+(150*i),525,150,75);
             badGuysSuck.setForeground(Color.WHITE);
             badGuysSuck.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getBadGuysSuck().isUsed()) {
@@ -445,7 +457,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(badGuysSuck);
 
             JLabel superMario = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getSuperMario().getCurValue());
-            superMario.setBounds(1060+(100*i),400,100,50);
+            superMario.setBounds(1590+(150*i),600,150,75);
             superMario.setForeground(Color.WHITE);
             superMario.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getSuperMario().isUsed()) {
@@ -457,7 +469,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
                 arrayList.get(i).getScoreCard().getLowerScorecard().getEvilBowser().setCurValue(-50);
             }
             JLabel evilBowser = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getEvilBowser().getCurValue());
-            evilBowser.setBounds(1060+(100*i),450,100,50);
+            evilBowser.setBounds(1590+(150*i),675,150,75);
             evilBowser.setForeground(Color.WHITE);
             evilBowser.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getEvilBowser().isUsed()) {
@@ -466,7 +478,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(evilBowser);
 
             JLabel animalKingdom = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getAnimalKingdom().getCurValue());
-            animalKingdom.setBounds(1060+(100*i),500,100,50);
+            animalKingdom.setBounds(1590+(150*i),750,150,75);
             animalKingdom.setForeground(Color.WHITE);
             animalKingdom.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getAnimalKingdom().isUsed()) {
@@ -475,7 +487,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
             buttonPanel.add(animalKingdom);
 
             JLabel marioParty = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getMarioParty().getCurValue());
-            marioParty.setBounds(1060+(100*i),550,100,50);
+            marioParty.setBounds(1590+(150*i),825,150,75);
             marioParty.setForeground(Color.WHITE);
             marioParty.setFont(instructionFont);
             if(arrayList.get(i).getScoreCard().getLowerScorecard().getMarioParty().isUsed()) {
@@ -485,20 +497,20 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
 
             JLabel upperTotal = new JLabel("" + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperTotal());
-            upperTotal.setBounds(1060+(100*i),600,100,50);
+            upperTotal.setBounds(1590+(150*i),900,150,75);
             upperTotal.setForeground(Color.WHITE);
             upperTotal.setFont(instructionFont);
             buttonPanel.add(upperTotal);
 
             JLabel lowerTotal = new JLabel("" + arrayList.get(i).getScoreCard().getLowerScorecard().getLowerTotal());
-            lowerTotal.setBounds(1060+(100*i),650,100,50);
+            lowerTotal.setBounds(1590+(150*i),975,150,75);
             lowerTotal.setForeground(Color.WHITE);
             lowerTotal.setFont(instructionFont);
             buttonPanel.add(lowerTotal);
 
             int total = arrayList.get(i).getScoreCard().getLowerScorecard().getLowerTotal() + arrayList.get(i).getScoreCard().getUpperScorecard().getUpperTotal();
             JLabel grandTotal = new JLabel("" + total);
-            grandTotal.setBounds(1060+(100*i),700,100,50);
+            grandTotal.setBounds(1590+(150*i),1050,150,75);
             grandTotal.setForeground(Color.WHITE);
             grandTotal.setFont(instructionFont);
             buttonPanel.add(grandTotal);
@@ -558,29 +570,29 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     }
 
     private void initializeUpperScorecardGraphics() {
-        int upperButtonStart = 150;
-        upperSection.setBounds(25, 100, 150, 50);
-        goodGuys.setBounds(25,upperButtonStart,buttonWidth,buttonHeight);
-        princesses.setBounds(25,upperButtonStart+(buttonDiff*1),buttonWidth,buttonHeight);
-        animals.setBounds(25,upperButtonStart+(buttonDiff*2),buttonWidth,buttonHeight);
-        badGuys.setBounds(25,upperButtonStart+(buttonDiff*3),buttonWidth,buttonHeight);
-        total.setBounds(25,430,100,100);
-        bonus.setBounds(25,470,100,100);
-        secondTotal.setBounds(25,510,100,100);
+        int upperButtonStart = 225;
+        upperSection.setBounds(38, 150, 225, 75);
+        goodGuys.setBounds(38,upperButtonStart,buttonWidth,buttonHeight);
+        princesses.setBounds(38,upperButtonStart+(buttonDiff*1),buttonWidth,buttonHeight);
+        animals.setBounds(38,upperButtonStart+(buttonDiff*2),buttonWidth,buttonHeight);
+        badGuys.setBounds(38,upperButtonStart+(buttonDiff*3),buttonWidth,buttonHeight);
+        total.setBounds(38,645,150,150);
+        bonus.setBounds(38,705,150,150);
+        secondTotal.setBounds(38,765,150,150);
 
-        goodGuyDescription.setBounds(175,upperButtonStart,150,80);
-        princessesDescription.setBounds(175,upperButtonStart+(buttonDiff*1),150,80);
-        animalsDescription.setBounds(175,upperButtonStart+(buttonDiff*2),150,80);
-        badGuysDescription.setBounds(175,upperButtonStart+(buttonDiff*3),150,80);
-        firstArrow.setBounds(175,460,150,50);
-        bonusDescription.setBounds(175,500,100,50);
-        secondArrow.setBounds(175,530,150,50);
+        goodGuyDescription.setBounds(263,upperButtonStart,225,120);
+        princessesDescription.setBounds(263,upperButtonStart+(buttonDiff*1),225,120);
+        animalsDescription.setBounds(263,upperButtonStart+(buttonDiff*2),225,120);
+        badGuysDescription.setBounds(263,upperButtonStart+(buttonDiff*3),225,120);
+        firstArrow.setBounds(263,690,225,75);
+        bonusDescription.setBounds(263,750,100,75);
+        secondArrow.setBounds(263,795,225,75);
 
-        howToScoreFirst.setBounds(175, 100, 150, 50);
-        player1Upper.setBounds(325,100,100,50);
-        player2Upper.setBounds(425,100,100,50);
-        player3Upper.setBounds(525,100,100,50);
-        player4Upper.setBounds(625,100,100,50);
+        howToScoreFirst.setBounds(263, 150, 150, 75);
+        player1Upper.setBounds(488,150,150,75);
+        player2Upper.setBounds(638,150,150,75);
+        player3Upper.setBounds(788,150,150,75);
+        player4Upper.setBounds(938,150,150,75);
 
         goodGuys.setOpaque(false);
         goodGuys.setBorderPainted(false);
@@ -689,37 +701,37 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     }
 
     private void initializeLowerScorecardGraphics() {
-        lowerSection.setBounds(750,50,100,50);
-        howToScoreSecond.setBounds(900,50,100,50);
+        lowerSection.setBounds(1125,75,150,75);
+        howToScoreSecond.setBounds(1350,75,150,75);
 
-        fiveOfAKind.setBounds(750,100,150,100);
-        sevenOfAKind.setBounds(750,200,150,100);
-        goodGuysRule.setBounds(750,300,150,50);
-        badGuysSuck.setBounds(750,350,150,50);
-        superMario.setBounds(750,400,150,50);
-        evilBowser.setBounds(750,450,150,50);
-        animalKingdom.setBounds(750,500,150,50);
-        marioParty.setBounds(750,550,150,50);
-        upperSectionTotal.setBounds(750,600,150,50);
-        lowerSectionTotal.setBounds(750,650,150,50);
-        grandTotal.setBounds(750,700,150,50);
+        fiveOfAKind.setBounds(1125,150,225,150);
+        sevenOfAKind.setBounds(1125,300,225,150);
+        goodGuysRule.setBounds(1125,450,225,75);
+        badGuysSuck.setBounds(1125,525,225,75);
+        superMario.setBounds(1125,600,225,75);
+        evilBowser.setBounds(1125,675,225,75);
+        animalKingdom.setBounds(1125,750,225,75);
+        marioParty.setBounds(1125,825,225,75);
+        upperSectionTotal.setBounds(1125,900,225,75);
+        lowerSectionTotal.setBounds(1125,975,225,75);
+        grandTotal.setBounds(1125,1050,225,75);
 
-        fiveOfAKindDescription.setBounds(900,100,150,100);
-        sevenOfAKindDescription.setBounds(900,200,150,100);
-        goodGuysRuleDescription.setBounds(900,300,150,50);
-        badGuysSuckDescription.setBounds(900,350,150,50);
-        superMarioDescription.setBounds(900,400,150,50);
-        evilBowserDescription.setBounds(900,450,150,50);
-        animalKingdomDescription.setBounds(900,500,150,50);
-        marioPartyDescription.setBounds(900,550,150,50);
-        upperSectionArrow.setBounds(900,600,150,50);
-        lowerSectionArrow.setBounds(900,650,150,50);
-        grandTotalArrow.setBounds(900,700,150,50);
+        fiveOfAKindDescription.setBounds(1350,150,225,150);
+        sevenOfAKindDescription.setBounds(1350,300,225,150);
+        goodGuysRuleDescription.setBounds(1350,450,225,75);
+        badGuysSuckDescription.setBounds(1350,525,225,75);
+        superMarioDescription.setBounds(1350,600,225,75);
+        evilBowserDescription.setBounds(1350,675,225,75);
+        animalKingdomDescription.setBounds(1350,750,225,75);
+        marioPartyDescription.setBounds(1350,825,225,75);
+        upperSectionArrow.setBounds(1350,900,225,75);
+        lowerSectionArrow.setBounds(1350,975,225,75);
+        grandTotalArrow.setBounds(1350,1050,225,75);
 
-        player1Lower.setBounds(1060,50,100,50);
-        player2Lower.setBounds(1160,50,100,50);
-        player3Lower.setBounds(1260,50,100,50);
-        player4Lower.setBounds(1360,50,100,50);
+        player1Lower.setBounds(1590,75,150,75);
+        player2Lower.setBounds(1740,75,150,75);
+        player3Lower.setBounds(1890,75,150,75);
+        player4Lower.setBounds(2040,75,150,75);
 
         fiveOfAKind.setOpaque(false);
         fiveOfAKind.setBorderPainted(false);
@@ -883,39 +895,39 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
 
         private void drawGridUpper(Graphics g) {
             //vertical lines
-            for(int i = 320; i <= 720; i+=100) {
-                g.drawLine(i,100,i,580);
+            for(int i = 480; i <= 1080; i+=150) {
+                g.drawLine(i,150,i,870);
             }
-            g.drawLine(20,100,20,580);
-            g.drawLine(170,100,170,580);
+            g.drawLine(30,150,30,870);
+            g.drawLine(255,150,255,870);
 
             //hoizontal lines
-            for(int i = 140; i <= 460; i+=80) {
-                g.drawLine(20,i,720,i);
+            for(int i = 215; i <= 695; i+=120) {
+                g.drawLine(30,i,1080,i);
             }
-            g.drawLine(20,100,720,100);
-            for(int i = 500; i < 620; i+= 40) {
-                g.drawLine(20,i,720,i);
+            g.drawLine(30,150,1080,150);
+            for(int i = 750; i < 930; i+= 60) {
+                g.drawLine(30,i,1080,i);
             }
         }
 
         private void drawGridLower(Graphics g) {
-            g.drawLine(740,50,1450,50);
-            for(int i = 100; i <= 300; i+=100) {
-                g.drawLine(740,i,1450,i);
+            g.drawLine(1110,75,2175,75);
+            for(int i = 150; i <= 450; i+=150) {
+                g.drawLine(1110,i,2175,i);
 
             }
-            for(int i = 350; i <= 750; i+=50) {
-                g.drawLine(740,i,1450,i);
+            for(int i = 525; i <= 1125; i+=75) {
+                g.drawLine(1110,i,2175,i);
             }
-            g.drawLine(740,50,740,750);
-            for(int i = 890; i <= 1050; i+= 150) {
-                g.drawLine(i,50,i,750);
+            g.drawLine(1110,75,1110,1125);
+            for(int i = 1335; i <= 1575; i+= 225) {
+                g.drawLine(i,75,i,1125);
                 i+=10;
             }
 
-            for(int i = 1150; i <= 1450; i+=100) {
-                g.drawLine(i,50,i,750);
+            for(int i = 1725; i <= 2175; i+=150) {
+                g.drawLine(i,75,i,1125);
             }
         }
 
