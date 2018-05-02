@@ -931,7 +931,7 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image. SCALE_SMOOTH), 0, 0, this);
-            g.setColor(Color.RED);
+            g.setColor(Color.WHITE);
             drawGridUpper(g);
             drawGridLower(g);
         }
