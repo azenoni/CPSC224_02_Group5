@@ -126,10 +126,6 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         title.setBounds(38,0,1200,150);
         saveButton.setBounds(30,975, 200,100);
         finishButton.setBounds(250, 975, 200, 100);
-<<<<<<< HEAD
-=======
-
->>>>>>> 324ef7934c25e005190c7f489a670af296ecbf4f
 
         saveButton.setOpaque(true);
         saveButton.setBorderPainted(true);
@@ -381,12 +377,10 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         } else if(e.getSource() == finishButton) {
             System.out.println("finish button clicked");
             EndGameFrame endGameFrame = new EndGameFrame(arrayList);
-<<<<<<< HEAD
             endGameFrame.setVisible(true);
             endGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.dispose();
-=======
->>>>>>> 324ef7934c25e005190c7f489a670af296ecbf4f
+
         }
     }
 
