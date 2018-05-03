@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class InstructionsPageFrame extends JFrame implements ActionListener{
     private JPanel buttonPanel;
-    private static final int DEFAULT_WIDTH = 2400;
-    private static final int DEFAULT_HEIGHT = 1200;
+    private static int DEFAULT_WIDTH = 2400;
+    private static int DEFAULT_HEIGHT = 1200;
 
     private JButton nextButton = new JButton("Next");
     private JButton mainMenuButton = new JButton("Main Menu");
@@ -18,7 +18,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
     private JLabel howToWinText = new JLabel("<html><strong><u>How to Win:</u></strong> " +
             "<br><br> The highest score after all twelve rounds, wins the game </html>");
     private JLabel howToPlayText = new JLabel("<html><strong><u>How To Play:</u></strong> <br>" +
-            "<br>To begin playing, each player will roll all 10 dice. The player who rolled the most ‘Mario’ dice, will begin the game. Play will " +
+            "<br>To begin playing, each player will roll twelve, <strong>twelve-sided</strong> dice. The player who rolled the most ‘Mario’ dice, will begin the game. Play will " +
             "continue in a clockwise. For each hand, you get three roles: <br>" +
             "<strong>Roll 1:</strong><blockquote>On roll one, the player picks up all the dice and <br>" +
             "rolls them. After this roll, you can keep none of the dice " +
@@ -35,6 +35,9 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
 
 
     public InstructionsPageFrame() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        DEFAULT_HEIGHT = (int)dimension.getHeight();
+        DEFAULT_WIDTH = (int)dimension.getWidth();
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ImagePanel();
@@ -44,10 +47,10 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         mainMenuButton.setBackground(Color.WHITE);
 
         title.setBounds(30,30,1000,100);
-        howToWinText.setBounds(75, 250, 600, 250);
-        howToPlayText.setBounds(750, 250, 900, 800);
-        nextButton.setBounds(45,980, 200,120);
-        mainMenuButton.setBounds(1735,980, 350,120);
+        howToWinText.setBounds(DEFAULT_WIDTH/15, DEFAULT_HEIGHT*2/10, 600, 250);
+        howToPlayText.setBounds(DEFAULT_WIDTH*6/15, DEFAULT_HEIGHT*2/10, 900, 800);
+        nextButton.setBounds(DEFAULT_WIDTH/20,DEFAULT_HEIGHT*13/15, 200,120);
+        mainMenuButton.setBounds(DEFAULT_WIDTH*16/20,DEFAULT_HEIGHT*13/15, 350,120);
 
         Font titleFont = new Font("Arial", Font.BOLD, 125);
         Font instructionFont = new Font("Arial", Font.PLAIN, 30);
@@ -66,7 +69,6 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         mainMenuButton.setForeground(Color.BLACK);
 
         title.setFont(titleFont);
-
         howToWinText.setFont(instructionFont);
         howToPlayText.setFont(instructionFont);
 
@@ -92,12 +94,16 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
                 diceInstructionFrame = new DiceInstructionFrame();
             } catch (IOException e1) {
                 e1.printStackTrace();
+            } catch (FontFormatException e1) {
+                e1.printStackTrace();
             }
+            diceInstructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             diceInstructionFrame.setVisible(true);
             this.dispose();
         } else if(e.getSource() == mainMenuButton) {
             System.out.println("Main menu button clicked");
             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
+            titleScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             titleScreenFrame.setVisible(true);
             this.dispose();
         }
@@ -110,7 +116,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         public ImagePanel(BorderLayout bl) {
             super(bl);
             try {
-                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
+                image = ImageIO.read(new File("img/flowerInstructions.png"));
             } catch (IOException ex) {
                 System.out.println("Image not found INSTRUCTIONS");
                 System.exit(1);
@@ -120,7 +126,7 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         public ImagePanel() {
             super();
             try {
-                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
+                image = ImageIO.read(new File("img/flowerInstructions.png"));
             } catch (IOException ex) {
                 System.out.println("Image not found INSTRUCTIONS 2");
                 System.exit(1);
@@ -130,6 +136,14 @@ public class InstructionsPageFrame extends JFrame implements ActionListener{
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+
+//            Graphics2D g2 = (Graphics2D) g;
+//            int w = DEFAULT_WIDTH;// real width of canvas
+//            int h = DEFAULT_HEIGHT;// real height of canvas
+//// Translate used to make sure scale is centered
+//            g2.translate(w/4, h/4);
+//            g2.scale(0.5, 0.5);
+//            g2.translate(-w/2, -h/2);
             g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image. SCALE_SMOOTH), 0, 0, this);
         }
     }

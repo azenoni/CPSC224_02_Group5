@@ -19,7 +19,7 @@ public class YahtzeeRunner {
      * @param args Optional command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Welcome to super mario yahtzee");
+        System.out.println("Welcome to Super Mario Yahtzee");
         System.out.println("The dice are as follows: \n 1 : Mario \n 2 : Luigi \n 3 : Toad \n 4 : Peach \n 5 : Daisy \n 6 : Rosalina \n 7 : Yoshi \n 8 : Donky Kong \n 9 : Diddy Kong \n 10 : Wario \n 11 : Waluigi \n 12 : Bowser");
         System.out.println("Numbers are categorized as follows: \n 1-3 : Good Guys \n 4-6 : Princesses \n 7-9 : Animals \n 10-12 : Bad Guys");
         System.out.println("Have fun!");

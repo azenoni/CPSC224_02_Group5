@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ScoreCardFrame extends JFrame implements ActionListener{
+
     private ArrayList<Player> arrayList;
     private int activePlayer;
     private ArrayList<Dice> diceHand;
 
     private final Font buttonFont = new Font("Arial", Font.BOLD, 45);
     private final Font titleFont = new Font("Arial", Font.BOLD, 120);
-    private final Font clickFont = new Font("Arial", Font.BOLD, 60);
     private final Font instructionFont = new Font("Arial", Font.PLAIN, 28);
     private final Font descriptionFont = new Font("Arial", Font.PLAIN, 23);
 
@@ -24,9 +24,9 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private final int buttonDiff = 120;
 
     private JPanel buttonPanel;
-    private boolean canSave = false;
     private static final int DEFAULT_WIDTH = 2400;
     private static final int DEFAULT_HEIGHT = 1350;
+
 
     private JButton saveButton = new JButton("SAVE");
     private JButton goodGuys = new JButton("Good Guys");
@@ -43,8 +43,8 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JButton finishButton = new JButton("END GAME");
     private JButton marioParty = new JButton("Mario Party");
 
+
     private JLabel title = new JLabel("<html><strong>PLAYER 1</strong></html>");
-    private JLabel clickDescription = new JLabel("<html><strong><i>Click the name of a category to mark your score!</i><strong></html>");
     private JLabel upperSection = new JLabel("<html><strong>Upper Section:</strong></html>");
     private JLabel lowerSection = new JLabel("<html><strong>Lower Section:</strong></html>");
     private JLabel howToScoreFirst = new JLabel("<html><strong>How to score:</strong></html>");
@@ -82,6 +82,9 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
     private JLabel lowerSectionTotal = new JLabel("<html>Lower Section <br>Total</html>");
     private JLabel grandTotal = new JLabel("GRAND TOTAL");
 
+    private boolean canSave = false;
+
+
     public ScoreCardFrame(ArrayList<Player> arrayList, int activePlayer, ArrayList<Dice> diceHand) {
         this.arrayList = arrayList;
         this.activePlayer = activePlayer;
@@ -116,35 +119,11 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         buttonPanel = new ImagePanel();
         buttonPanel.setLayout(null);
 
-        title.setForeground(Color.WHITE);
-        title.setFont(titleFont);
+        saveButton.setBackground(Color.WHITE);
 
         title.setBounds(38,0,1200,150);
-        clickDescription.setBounds(50, 1050, 1000, 250);
         saveButton.setBounds(30,975, 200,100);
-
         finishButton.setBounds(250, 975, 350, 100);
-
-        clickDescription.setForeground(Color.GREEN);
-        clickDescription.setFont(clickFont);
-
-        saveButton.setVisible(false);
-        saveButton.setOpaque(true);
-        saveButton.setBorderPainted(true);
-        saveButton.setContentAreaFilled(true);
-        saveButton.setFont(buttonFont);
-        saveButton.setForeground(Color.BLACK);
-        saveButton.setBackground(Color.WHITE);
-        saveButton.addActionListener(this);
-
-
-        finishButton.setOpaque(true);
-        finishButton.setBorderPainted(true);
-        finishButton.setContentAreaFilled(true);
-        finishButton.setFont(buttonFont);
-        finishButton.setForeground(Color.BLACK);
-        finishButton.setBackground(Color.WHITE);
-        finishButton.addActionListener(this);
 
         goodGuyDescription.setFont(descriptionFont);
         princessesDescription.setFont(descriptionFont);
@@ -165,8 +144,26 @@ public class ScoreCardFrame extends JFrame implements ActionListener{
         lowerSectionArrow.setFont(descriptionFont);
         grandTotal.setFont(descriptionFont);
 
+        saveButton.setVisible(false);
+        saveButton.setOpaque(true);
+        saveButton.setBorderPainted(true);
+        saveButton.setContentAreaFilled(true);
+        saveButton.setFont(buttonFont);
+        saveButton.setForeground(Color.BLACK);
+        saveButton.addActionListener(this);
+
+        finishButton.setOpaque(true);
+        finishButton.setBorderPainted(true);
+        finishButton.setContentAreaFilled(true);
+        finishButton.setFont(buttonFont);
+        finishButton.setForeground(Color.BLACK);
+        finishButton.addActionListener(this);
+
+        title.setForeground(Color.WHITE);
+        title.setFont(titleFont);
+        finishButton.setBackground(Color.WHITE);
+
         buttonPanel.add(title);
-        buttonPanel.add(clickDescription);
         buttonPanel.add(saveButton);
         buttonPanel.add(finishButton);
     }

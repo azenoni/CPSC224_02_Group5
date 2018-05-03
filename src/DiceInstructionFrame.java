@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,51 +6,44 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static javax.imageio.ImageIO.*;
+
 public class DiceInstructionFrame extends JFrame implements ActionListener{
     private JPanel buttonPanel;
-    private BufferedImage diceImages[][];
-    private static final int DEFAULT_WIDTH = 2400;
-    private static final int DEFAULT_HEIGHT = 1200;
+    private static int DEFAULT_WIDTH = 2400;
+    private static int DEFAULT_HEIGHT = 1200;
 
     private JButton backButton = new JButton("Back");
     private JButton nextButton = new JButton("Next");
     private JButton mainMenuButton = new JButton("Main Menu");
     private JLabel title = new JLabel("<html><strong>DICE</strong></html>");
-    private JLabel diceDescription = new JLabel("<html>This game is played with twelve, <strong>twelve-sided</strong> dice.</html>");
+    private JLabel diceDescription = new JLabel("<html><font color=\"white\">Good Guys " +
+            "&emsp;&emsp;&emsp;&emsp;Princesses " +
+            "&emsp;&emsp;&emsp;&emsp;Animals " +
+            "&emsp;&emsp;&emsp;&emsp;Bad Guys</font></html>");
 
-    public DiceInstructionFrame () throws IOException {
+    public DiceInstructionFrame () throws IOException, FontFormatException {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        DEFAULT_HEIGHT = (int)dimension.getHeight();
+        DEFAULT_WIDTH = (int)dimension.getWidth();
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ImagePanel();
-        diceImages = new BufferedImage[3][4];
         buttonPanel.setLayout(null);
-
-        diceImages[0][0] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\mario.png"));
-        diceImages[0][1] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\princessPeach.png"));
-        diceImages[0][2] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\yoshi.png"));
-        diceImages[0][3] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\wario.png"));
-        diceImages[1][0] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\luigi.png"));
-        diceImages[1][1] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\daisy.png"));
-        diceImages[1][2] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\donkeyKong.png"));
-        diceImages[1][3] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\waluigi.png"));
-        diceImages[2][0] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\toad.png"));
-        diceImages[2][1] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\rosalina.png"));
-        diceImages[2][2] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\diddyKong.png"));
-        diceImages[2][3] = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\bowser.png"));
 
         backButton.setBackground(Color.WHITE);
         nextButton.setBackground(Color.WHITE);
         mainMenuButton.setBackground(Color.WHITE);
 
         title.setBounds(30,30,1000,100);
-        diceDescription.setBounds(75, 100, 1000, 250);
-        backButton.setBounds(45,980, 200,120);
-        nextButton.setBounds(300, 980, 200, 120);
-        mainMenuButton.setBounds(1735,980, 350,120);
+        diceDescription.setBounds(DEFAULT_WIDTH/10, DEFAULT_HEIGHT/15, 1600, 250);
+        backButton.setBounds(DEFAULT_WIDTH/18,DEFAULT_HEIGHT*13/15, 200,120);
+        nextButton.setBounds(DEFAULT_WIDTH*4/18, DEFAULT_HEIGHT*13/15, 200, 120);
+        mainMenuButton.setBounds(DEFAULT_WIDTH*15/18,DEFAULT_HEIGHT*13/15, 350,120);
 
-        Font titleFont = new Font("Arial", Font.BOLD, 125);
-        Font textFont = new Font("Arial", Font.PLAIN, 30);
-        Font buttonFont = new Font("Arial", Font.BOLD, 50);
+        Font titleFont = new Font("Arial", Font.BOLD, DEFAULT_WIDTH/20);
+        Font textFont = new Font("Arial", Font.ITALIC, DEFAULT_WIDTH/50);
+        Font buttonFont = new Font("Arial", Font.BOLD, DEFAULT_WIDTH/50);
 
         backButton.setOpaque(true);
         backButton.setBorderPainted(true);
@@ -72,7 +64,6 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         mainMenuButton.setForeground(Color.BLACK);
 
         title.setFont(titleFont);
-
         diceDescription.setFont(textFont);
 
         backButton.addActionListener(this);
@@ -84,9 +75,7 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         buttonPanel.add(backButton);
         buttonPanel.add(nextButton);
         buttonPanel.add(diceDescription);
-        //buttonPanel.add(diceImages);
 
-        buttonPanel.setLocation(10,100);
         add(buttonPanel);
     }
 
@@ -95,37 +84,67 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         if(e.getSource() == backButton){
             System.out.println("Back button clicked");
             InstructionsPageFrame instructionsPageFrame = new InstructionsPageFrame();
+            instructionsPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             instructionsPageFrame.setVisible(true);
             this.dispose();
         } else if (e.getSource() == nextButton) {
             System.out.println("Next button clicked");
-            // edit scoring pages
+            ScoringInstructionFrame scoringInstructionFrame = new ScoringInstructionFrame();
+            scoringInstructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            scoringInstructionFrame.setVisible(true);
+            this.dispose();
         } else if(e.getSource() == mainMenuButton) {
             System.out.println("Main menu button clicked");
             TitleScreenFrame titleScreenFrame = new TitleScreenFrame();
+            titleScreenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             titleScreenFrame.setVisible(true);
             this.dispose();
         }
     }
 
+    // Sets up Background Image on Panel
+    // Add buttons to background
     public class ImagePanel extends JPanel{
-
         private BufferedImage image;
+        // Good Guys
+        private BufferedImage mario;
+        private BufferedImage luigi;
+        private BufferedImage toad;
+        // Princesses
+        private BufferedImage princessPeach;
+        private BufferedImage daisy;
+        private BufferedImage rosalina;
+        // Animals
+        private BufferedImage yoshi;
+        private BufferedImage donkeyKong;
+        private BufferedImage diddyKong;
+        // Bad Guys
+        private BufferedImage wario;
+        private BufferedImage waluigi;
+        private BufferedImage bowser;
+        private final int IMAGE_SIZE = DEFAULT_HEIGHT/10;
 
-        public ImagePanel(BorderLayout bl) {
-            super(bl);
-            try {
-                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
-            } catch (IOException ex) {
-                System.out.println("Image not found DICE INSTRUCTIONS");
-                System.exit(1);
-            }
-        }
-
-        public ImagePanel() {
+        public ImagePanel() throws IOException {
             super();
+
             try {
-                image = ImageIO.read(new File("C:\\Users\\krist\\OneDrive - Gonzaga University\\Spring 2018\\CPSC 224\\FinalProject\\img\\flowerInstructions.png"));
+                image = read(new File("img/flowerInstructions.png"));
+                // Good Guys
+                mario = read(new File("img/mario.png"));
+                luigi = read(new File("img/luigi.png"));
+                toad = read(new File("img/toad.png"));
+                // Princesses
+                princessPeach = read(new File("img/princessPeach.png"));
+                daisy = read(new File("img/daisy.png"));
+                rosalina = read(new File("img/rosalina.png"));
+                // Animals
+                yoshi = read(new File("img/yoshi.png"));
+                donkeyKong = read(new File("img/donkeyKong.png"));
+                diddyKong = read(new File("img/diddyKong.png"));
+                // Bad Guys
+                wario = read(new File("img/wario.png"));
+                waluigi = read(new File("img/waluigi.png"));
+                bowser = read(new File("img/bowser.png"));
             } catch (IOException ex) {
                 System.out.println("Image not found DICE INSTRUCTIONS 2");
                 System.exit(1);
@@ -135,7 +154,31 @@ public class DiceInstructionFrame extends JFrame implements ActionListener{
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image. SCALE_SMOOTH), 0, 0, this);
+//            Graphics2D g2 = (Graphics2D) g;
+//            int w = DEFAULT_WIDTH;// real width of canvas
+//            int h = DEFAULT_HEIGHT;// real height of canvas
+//// Translate used to make sure scale is centered
+//            g2.translate(w/4, h/4);
+//            g2.scale(0.5, 0.5);
+//            g2.translate(-w/2, -h/2);
+
+            g.drawImage(image.getScaledInstance(DEFAULT_WIDTH, DEFAULT_HEIGHT, Image.SCALE_SMOOTH), 0, 0, this);
+            // Good Guys
+            g.drawImage(mario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(luigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(toad.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*2/20, DEFAULT_HEIGHT*25/40, this);
+            // Princesses
+            g.drawImage(princessPeach.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(daisy.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(rosalina.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*6/20, DEFAULT_HEIGHT*25/40, this);
+            // Animals
+            g.drawImage(yoshi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(donkeyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(diddyKong.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*10/20, DEFAULT_HEIGHT*25/40, this);
+            // Bad Guys
+            g.drawImage(wario.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*9/40, this);
+            g.drawImage(waluigi.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*17/40, this);
+            g.drawImage(bowser.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_SMOOTH), DEFAULT_WIDTH*13/20, DEFAULT_HEIGHT*25/40, this);
         }
     }
 }

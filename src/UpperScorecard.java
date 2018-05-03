@@ -55,6 +55,21 @@ public class UpperScorecard {
         }
     }
 
+    public void resetUnusedValues() {
+        if(!goodGuys.isUsed()) {
+            goodGuys.setCurValue(0);
+        }
+        if(!princesses.isUsed()) {
+            princesses.setCurValue(0);
+        }
+        if(!animals.isUsed()) {
+            animals.setCurValue(0);
+        }
+        if(!badGuys.isUsed()) {
+            badGuys.setCurValue(0);
+        }
+    }
+
     /**
      * If the upper portion has fields remaining
      * @return If there are fields remaining
@@ -88,9 +103,10 @@ public class UpperScorecard {
         upperSum = goodGuys.getCurValue() + princesses.getCurValue() + animals.getCurValue() + badGuys.getCurValue();
         if(upperSum >= 200) {
             hasBonus = true;
-            upperSum += 45;
+            upperTotal = upperSum + 45;
+//            upperSum += 45;
         }
-        upperTotal = upperSum;
+
 
     }
 
@@ -128,5 +144,21 @@ public class UpperScorecard {
 
     public int getUpperTotal() {
         return upperTotal;
+    }
+
+    public int getUpperSum() {
+        return upperSum;
+    }
+
+    public void setUpperSum(int upperSum) {
+        this.upperSum = upperSum;
+    }
+
+    public boolean isHasBonus() {
+        return hasBonus;
+    }
+
+    public void setHasBonus(boolean hasBonus) {
+        this.hasBonus = hasBonus;
     }
 }
