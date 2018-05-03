@@ -22,9 +22,6 @@ public class EndGameFrame extends JFrame implements ActionListener{
     private JLabel player3 = new JLabel();
     private JLabel player4 = new JLabel();
 
-
-
-
     public EndGameFrame(ArrayList<Player> arrayList) {
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,31 +31,31 @@ public class EndGameFrame extends JFrame implements ActionListener{
         playAgainButton.setBackground(Color.WHITE);
         exitButton.setBackground(Color.WHITE);
 
-        title.setBounds(30,30,DEFAULT_WIDTH,225);
-        player1.setBounds(30,300,800,100);
-        player2.setBounds(30,400,800,100);
-        player3.setBounds(30,500,800,100);
-        player4.setBounds(30,600,800,100);
+        title.setBounds(75,30,DEFAULT_WIDTH,225);
+        player1.setBounds(125,325,800,100);
+        player2.setBounds(125,425,800,100);
+        player3.setBounds(125,525,800,100);
+        player4.setBounds(125,625,800,100);
 
         for(int i = 0; i < arrayList.size(); i++) {
             if(i == 0) {
                 arrayList.get(i).getScoreCard().determineFinalScore();
-                player1.setText("Player 1's score is: " + (String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal())));
+                player1.setText("Player 1's Score: " + (String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal())));
             }
             if(i == 1) {
-                player2.setText("Player 2's score is: " + String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal()));
+                player2.setText("Player 2's Score: " + String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal()));
             }
             if(i == 2) {
-                player3.setText("Player 3's score is: " + String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal()));
+                player3.setText("Player 3's Score: " + String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal()));
             }
             if(i == 3) {
-                player4.setText("Player 4's score is: " + (String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal())));
+                player4.setText("Player 4's Score: " + (String.valueOf(arrayList.get(i).getScoreCard().getScoreCardTotal())));
 
             }
         }
 
-        playAgainButton.setBounds(45,980, 350,120);
-        exitButton.setBounds(1735,980, 350,120);
+        playAgainButton.setBounds(75,980, 400,120);
+        exitButton.setBounds(2000,980, 275,120);
 
         Font titleFont = new Font("Arial", Font.BOLD, 175);
         Font buttonFont = new Font("Arial", Font.BOLD, 50);
@@ -102,8 +99,8 @@ public class EndGameFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
          if(e.getSource() == playAgainButton) {
             System.out.println("Play Again button clicked");
-             MultiPlayerFrame titleScreenFrame = new MultiPlayerFrame();
-             titleScreenFrame.setVisible(true);
+             MultiPlayerFrame multiPlayerFrame = new MultiPlayerFrame();
+             multiPlayerFrame.setVisible(true);
              this.dispose();
         }else if(e.getSource() == exitButton) {
             this.dispose();

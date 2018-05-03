@@ -16,9 +16,11 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     private static final int DEFAULT_HEIGHT = 1200;
     private static int turnCount = 0;
     private int activePlayer;
-    private static ArrayList<Image> diceImages = new ArrayList<>();
     private static ArrayList<Player> players;
+    private static ArrayList<Image> diceImages = new ArrayList<>();
     private ArrayList<Dice> diceHand = new ArrayList<>();
+
+    private JLabel playerLabel = new JLabel();
 
     private JButton keepButton1 = new JButton("KEEP");
     private JButton keepButton2 = new JButton("KEEP");
@@ -73,6 +75,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
             this.players.add(new Player(12, 12));
         }
 
+        playerLabel.setText("PLAYER 1");
         scoreButton.setVisible(false);
         buttonPanel.setLocation(10, 100);
         add(buttonPanel);
@@ -85,6 +88,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         this.players = players;
         activePlayer = currentPlayer;
 
+        playerLabel.setText("PLAYER "+ (activePlayer + 1));
         scoreButton.setVisible(false);
         buttonPanel.setLocation(10, 100);
         add(buttonPanel);
@@ -97,7 +101,9 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         buttonPanel.setLayout(null);
 
         Font buttonFont = new Font("Arial", Font.BOLD, 35);
+        Font titleFont = new Font("Arial", Font.BOLD, 150);
 
+        playerLabel.setBackground(Color.WHITE);
         keepButton1.setBackground(Color.WHITE);
         keepButton2.setBackground(Color.WHITE);
         keepButton3.setBackground(Color.WHITE);
@@ -115,6 +121,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         scoreButton.setBackground(Color.WHITE);
         mainMenuButton.setBackground(Color.WHITE);
 
+        playerLabel.setForeground(Color.BLACK);
         keepButton1.setForeground(Color.BLACK);
         keepButton2.setForeground(Color.BLACK);
         keepButton3.setForeground(Color.BLACK);
@@ -132,23 +139,25 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         scoreButton.setForeground(Color.BLACK);
         mainMenuButton.setForeground(Color.BLACK);
 
-        keepButton1.setBounds(200, 300, 200, 100);
-        keepButton2.setBounds(600, 300, 200, 100);
-        keepButton3.setBounds(950, 300, 200, 100);
-        keepButton4.setBounds(1300, 300, 200, 100);
-        keepButton5.setBounds(1650, 300, 200, 100);
-        keepButton6.setBounds(2000, 300, 200, 100);
-        keepButton7.setBounds(200, 750, 200, 100);
-        keepButton8.setBounds(600, 750, 200, 100);
-        keepButton9.setBounds(950, 750, 200, 100);
-        keepButton10.setBounds(1300, 750, 200, 100);
-        keepButton11.setBounds(1650, 750, 200, 100);
-        keepButton12.setBounds(2000, 750, 200, 100);
+        playerLabel.setBounds(875, 10, 1000, 200);
+        keepButton1.setBounds(200, 425, 200, 75);
+        keepButton2.setBounds(600, 425, 200, 75);
+        keepButton3.setBounds(950, 425, 200, 75);
+        keepButton4.setBounds(1300, 425, 200, 75);
+        keepButton5.setBounds(1650, 425, 200, 75);
+        keepButton6.setBounds(2000, 425, 200, 75);
+        keepButton7.setBounds(200, 775, 200, 75);
+        keepButton8.setBounds(600, 775, 200, 75);
+        keepButton9.setBounds(950, 775, 200, 75);
+        keepButton10.setBounds(1300, 775, 200, 75);
+        keepButton11.setBounds(1650, 775, 200, 75);
+        keepButton12.setBounds(2000, 775, 200, 75);
 
         mainMenuButton.setBounds(400,1000, 270,100);
         rollButton.setBounds(1735, 1000, 200, 100);
         scoreButton.setBounds(1145, 960, 200, 100);
 
+        playerLabel.setFont(titleFont);
         keepButton1.setFont(buttonFont);
         keepButton2.setFont(buttonFont);
         keepButton3.setFont(buttonFont);
@@ -183,6 +192,7 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         rollButton.addActionListener(this);
         scoreButton.addActionListener(this);
 
+        buttonPanel.add(playerLabel);
         buttonPanel.add(keepButton1);
         buttonPanel.add(keepButton2);
         buttonPanel.add(keepButton3);
@@ -202,18 +212,18 @@ public class DiceRollFrame extends JFrame implements ActionListener {
     }
 
     private void initializeDiceImages() throws  IOException{
-        Image mario = ImageIO.read(new File("img/mario.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image luigi = ImageIO.read(new File("img/luigi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image toad = ImageIO.read(new File("img/toad.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image princessPeach = ImageIO.read(new File("img/princessPeach.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image daisy = ImageIO.read(new File("img/daisy.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image rosalina = ImageIO.read(new File("img/rosalina.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image yoshi = ImageIO.read(new File("img/yoshi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image donkeyKong = ImageIO.read(new File("img/donkeyKong.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image diddyKong = ImageIO.read(new File("img/diddyKong.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image wario = ImageIO.read(new File("img/wario.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image waluigi = ImageIO.read(new File("img/waluigi.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
-        Image bowser = ImageIO.read(new File("img/bowser.png")).getScaledInstance(200, 250, Image.SCALE_SMOOTH);
+        Image mario = ImageIO.read(new File("img/mario.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image luigi = ImageIO.read(new File("img/luigi.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image toad = ImageIO.read(new File("img/toad.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image princessPeach = ImageIO.read(new File("img/princessPeach.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image daisy = ImageIO.read(new File("img/daisy.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image rosalina = ImageIO.read(new File("img/rosalina.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image yoshi = ImageIO.read(new File("img/yoshi.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image donkeyKong = ImageIO.read(new File("img/donkeyKong.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image diddyKong = ImageIO.read(new File("img/diddyKong.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image wario = ImageIO.read(new File("img/wario.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image waluigi = ImageIO.read(new File("img/waluigi.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image bowser = ImageIO.read(new File("img/bowser.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 
         diceImages.add(mario);
         diceImages.add(luigi);
@@ -243,18 +253,18 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         diceButton11.setBackground(Color.WHITE);
         diceButton12.setBackground(Color.WHITE);
 
-        diceButton1.setBounds(200, 25, 200, 250);
-        diceButton2.setBounds(600, 25, 200, 250);
-        diceButton3.setBounds(950, 25, 200, 250);
-        diceButton4.setBounds(1300, 25, 200, 250);
-        diceButton5.setBounds(1650, 25, 200, 250);
-        diceButton6.setBounds(2000, 25, 200, 250);
-        diceButton7.setBounds(200, 475, 200, 250);
-        diceButton8.setBounds(600, 475, 200, 250);
-        diceButton9.setBounds(950, 475, 200, 250);
-        diceButton10.setBounds(1300, 475, 200, 250);
-        diceButton11.setBounds(1650, 475, 200, 250);
-        diceButton12.setBounds(2000, 475, 200, 250);
+        diceButton1.setBounds(200, 200, 200, 215);
+        diceButton2.setBounds(600, 200, 200, 215);
+        diceButton3.setBounds(950, 200, 200, 215);
+        diceButton4.setBounds(1300, 200, 200, 215);
+        diceButton5.setBounds(1650, 200, 200, 215);
+        diceButton6.setBounds(2000, 200, 200, 215);
+        diceButton7.setBounds(200, 550, 200, 215);
+        diceButton8.setBounds(600, 550, 200, 215);
+        diceButton9.setBounds(950, 550, 200, 215);
+        diceButton10.setBounds(1300, 550, 200, 215);
+        diceButton11.setBounds(1650, 550, 200, 215);
+        diceButton12.setBounds(2000, 550, 200, 215);
 
         diceButton1.addActionListener(this);
         diceButton2.addActionListener(this);
@@ -301,7 +311,6 @@ public class DiceRollFrame extends JFrame implements ActionListener {
         dice.rollDice();
         Image face = diceImages.get(dice.getCurValue() - 1);
         button.setIcon(new ImageIcon(face));
-
         diceHand.add(dice);
     }
 
