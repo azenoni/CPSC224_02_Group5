@@ -1,13 +1,15 @@
-// import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-// public class DiceTest {
+import junit.framework.TestCase;
 
-//     @Test
-//     public void createDice() {
-//         Dice dice = new Dice(6);
-//         assert (dice.getNumSides() == 6);
-//         assert (dice.isActive() == true);
-//     }
+ public class DiceTest extends TestCase{
 
 
-// }
+     public void testCreateDice() throws Exception {
+         Dice dice = new Dice(6);
+         assertEquals(dice.getNumSides(), 6);
+         assertTrue (dice.isActive());
+     }
+
+
+ }
